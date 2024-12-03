@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace NoaHunterNEA
 {
-    public partial class HomePage : Form
+    public partial class InspectionPage : Form
     {
-        public HomePage()
+        public InspectionPage()
         {
             InitializeComponent();
         }
@@ -20,12 +20,6 @@ namespace NoaHunterNEA
         private void label1_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            InspectionPage inspectionPage = new InspectionPage();
-            inspectionPage.ShowDialog(); //dialog stops user being able to use form below 
         }
     }
 }
