@@ -38,6 +38,11 @@ namespace NoaHunterNEA
             OleDbCommand cmd;
             cmd = new OleDbCommand(sqlString, conn);
             return cmd.ExecuteReader() ;
-        }  
+        } 
+        
+        public string GetConnectionString()
+        {
+            return conn.ConnectionString;
+        }
     }
 }
