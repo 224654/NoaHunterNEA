@@ -33,16 +33,16 @@ namespace NoaHunterNEA
         {
         }
 
-        private void ComboFill(ComboBox comboName)
+        private void ComboFill(ComboBox comboName,int skill)
         {
             comboName.Items.Clear();
             clsDBConnector dBConnector = new clsDBConnector();
             dBConnector.Connect();
-            string sqlString = "SELECT UserID, Sname FROM tblUsers ";
-            /*string sqlString = "SELECT        tblUsers.UserID, tblUsers.Sname"+
-                               "FROM(tblTraining INNER JOIN"+
-                               "tblUsers ON tblTraining.UserID = tblUsers.UserID)"+
-                               "WHERE(tblTraining.SkillID = 7)";*/
+            //string sqlString = "SELECT UserID, Sname FROM tblUsers ";
+            string sqlString = "SELECT        tblUsers.UserID, tblUsers.Sname"+
+                               " FROM(tblTraining INNER JOIN"+
+                               " tblUsers ON tblTraining.UserID = tblUsers.UserID)"+
+                               $" WHERE(tblTraining.SkillID = {skill})";
             OleDbDataAdapter da = new OleDbDataAdapter(sqlString, dBConnector.GetConnectionString());
             DataSet ds = new DataSet();
             da.Fill(ds, "tblUsers");
@@ -53,7 +53,19 @@ namespace NoaHunterNEA
 
         private void InspectionPage_Load_1(object sender, EventArgs e)
         {
-            ComboFill(cmbDuty);
+            ComboFill(cmbDuty, 6);
+            ComboFill(cmbLead, 7);
+
+            cmbLocation.Items.Clear();
+            clsDBConnector dBConnector = new clsDBConnector();
+            dBConnector.Connect();
+            string sqlString = "SELECT locationName FROM tblLocations ";
+            OleDbDataAdapter da = new OleDbDataAdapter(sqlString, dBConnector.GetConnectionString());
+            DataSet ds = new DataSet();
+            da.Fill(ds, "tblLocations");
+            cmbLocation.DisplayMember = "Location";
+            cmbLocation.ValueMember = "LocationID";
+            cmbLocation.DataSource = ds.Tables["tblLocations"];
         }
     }
 }
