@@ -39,6 +39,10 @@ namespace NoaHunterNEA
             clsDBConnector dBConnector = new clsDBConnector();
             dBConnector.Connect();
             string sqlString = "SELECT UserID, Sname FROM tblUsers ";
+            /*string sqlString = "SELECT        tblUsers.UserID, tblUsers.Sname"+
+                               "FROM(tblTraining INNER JOIN"+
+                               "tblUsers ON tblTraining.UserID = tblUsers.UserID)"+
+                               "WHERE(tblTraining.SkillID = 7)";*/
             OleDbDataAdapter da = new OleDbDataAdapter(sqlString, dBConnector.GetConnectionString());
             DataSet ds = new DataSet();
             da.Fill(ds, "tblUsers");

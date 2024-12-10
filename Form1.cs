@@ -26,7 +26,7 @@ namespace NoaHunterNEA
         private void btnGuest_Click(object sender, EventArgs e)
         {
             HomePage homePage = new HomePage();
-            homePage.ShowDialog(); //dialog stops user being able to use form below 
+            homePage.Show(); //dialog stops user being able to use form below 
         }
     }
 }
