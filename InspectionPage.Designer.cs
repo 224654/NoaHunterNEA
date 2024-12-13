@@ -72,6 +72,7 @@
             this.cmbLead.Name = "cmbLead";
             this.cmbLead.Size = new System.Drawing.Size(200, 21);
             this.cmbLead.TabIndex = 3;
+            this.cmbLead.SelectedIndexChanged += new System.EventHandler(this.cmbLead_SelectedIndexChanged);
             // 
             // dateTimePicker1
             // 

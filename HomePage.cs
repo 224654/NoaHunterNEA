@@ -25,7 +25,7 @@ namespace NoaHunterNEA
         private void btnStart_Click(object sender, EventArgs e)
         {
             InspectionPage inspectionPage = new InspectionPage();
-            inspectionPage.Show(); //dialog stops user being able to use form below 
+            inspectionPage.ShowDialog(); //dialog stops user being able to use form below 
         }
     }
 }

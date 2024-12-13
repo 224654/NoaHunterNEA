@@ -33,39 +33,50 @@ namespace NoaHunterNEA
         {
         }
 
-        private void ComboFill(ComboBox comboName,int skill)
+        private void FillPplCmb(ComboBox comboName,int skill)
         {
             comboName.Items.Clear();
             clsDBConnector dBConnector = new clsDBConnector();
             dBConnector.Connect();
             //string sqlString = "SELECT UserID, Sname FROM tblUsers ";
-            string sqlString = "SELECT        tblUsers.UserID, tblUsers.Sname"+
+            string sqlString = "SELECT        tblUsers.UserID, (tblUsers.Sname & " + "', '" + " & tblUsers.Fname) as Name" +
                                " FROM(tblTraining INNER JOIN"+
                                " tblUsers ON tblTraining.UserID = tblUsers.UserID)"+
-                               $" WHERE(tblTraining.SkillID = {skill})";
+                               $" WHERE(tblTraining.SkillID = {skill})"+
+                               " ORDER BY Sname, Fname";
             OleDbDataAdapter da = new OleDbDataAdapter(sqlString, dBConnector.GetConnectionString());
             DataSet ds = new DataSet();
             da.Fill(ds, "tblUsers");
-            comboName.DisplayMember = "Sname";
+            comboName.DisplayMember = "Name";
             comboName.ValueMember = "UserID";
             comboName.DataSource = ds.Tables["tblUsers"];
         }
 
         private void InspectionPage_Load_1(object sender, EventArgs e)
         {
-            ComboFill(cmbDuty, 6);
-            ComboFill(cmbLead, 7);
+            FillPplCmb(cmbDuty, 6);
+            FillPplCmb(cmbLead, 7);
+            FillLocCmb();
+            
+        }
 
+        private void FillLocCmb()
+        {
             cmbLocation.Items.Clear();
             clsDBConnector dBConnector = new clsDBConnector();
             dBConnector.Connect();
-            string sqlString = "SELECT locationName FROM tblLocations ";
+            string sqlString = "SELECT LocationID, LocationName FROM tblLocations ";
             OleDbDataAdapter da = new OleDbDataAdapter(sqlString, dBConnector.GetConnectionString());
             DataSet ds = new DataSet();
             da.Fill(ds, "tblLocations");
-            cmbLocation.DisplayMember = "Location";
+            cmbLocation.DisplayMember = "LocationName";
             cmbLocation.ValueMember = "LocationID";
             cmbLocation.DataSource = ds.Tables["tblLocations"];
+        }
+
+        private void cmbLead_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
