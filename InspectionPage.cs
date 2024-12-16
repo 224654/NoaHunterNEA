@@ -54,10 +54,63 @@ namespace NoaHunterNEA
 
         private void InspectionPage_Load_1(object sender, EventArgs e)
         {
+            //
+            //clsDBConnector dbConnector = new clsDBConnector();
+            //string cmdStr = "INSERT INTO tblInspection  (Location, DutyManager, LeadInstructor, InspectionDate) " +
+            //    $"VALUES ('{VAR}',{VAR})";
+            //dbConnector.Connect();
+            //dbConnector.DoDML(cmdStr);
+            //dbConnector.Close();
+            lblID.Text = $"Inspection: {FindLargestID("InspectionID", "tblInspection")}";
+            //
+            
             FillPplCmb(cmbDuty, 6);
             FillPplCmb(cmbLead, 7);
             FillLocCmb();
-            
+            DefaultInspection();
+
+        }
+
+        private void DefaultInspection()
+        {
+            string Location = "", Duty = "", Lead ="";
+            //Read most recent record in tblInspection
+            clsDBConnector dbConnector = new clsDBConnector();
+            OleDbDataReader dr;
+            string sqlStr;
+            dbConnector.Connect();
+            sqlStr = $" SELECT Location, DutyManager, LeadInstructor " +
+                $"FROM tblInspection " +
+                $"WHERE InspectionID = {FindLargestID("InspectionID", "tblInspection")}";
+            dr = dbConnector.DoSQL(sqlStr);
+            while (dr.Read())
+            {
+                Location = dr[0].ToString();
+                Duty = dr[1].ToString();
+                Lead = dr[2].ToString();
+
+            }
+            string cmdStr = "INSERT INTO tblInspection  (Location, DutyManager, LeadInstructor, InspectionDate) " +
+                $"VALUES ({Location},{Duty},{Lead},'{DateTime.Now.ToString()}')";
+            cmbLocation.SelectedValue = Location;
+            dbConnector.DoDML(cmdStr);
+            dbConnector.Close();
+        }
+
+        public int FindLargestID(string PrimaryKey, string Table)
+        {
+            clsDBConnector dbConnector = new clsDBConnector();
+            OleDbDataReader dr;
+            string sqlStr;
+            dbConnector.Connect();
+            sqlStr = $" SELECT MAX({PrimaryKey}) AS maxID FROM {Table} ";
+            dr = dbConnector.DoSQL(sqlStr);
+            while (dr.Read())
+            {
+                return Convert.ToInt32(dr[0]);
+            }
+            dbConnector.Close();
+            return 0;
         }
 
         private void FillLocCmb()
@@ -73,6 +126,8 @@ namespace NoaHunterNEA
             cmbLocation.ValueMember = "LocationID";
             cmbLocation.DataSource = ds.Tables["tblLocations"];
         }
+
+
 
         private void cmbLead_SelectedIndexChanged(object sender, EventArgs e)
         {
