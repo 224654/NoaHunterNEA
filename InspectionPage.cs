@@ -54,23 +54,29 @@ namespace NoaHunterNEA
 
         private void InspectionPage_Load_1(object sender, EventArgs e)
         {
-            //
-            //clsDBConnector dbConnector = new clsDBConnector();
-            //string cmdStr = "INSERT INTO tblInspection  (Location, DutyManager, LeadInstructor, InspectionDate) " +
-            //    $"VALUES ('{VAR}',{VAR})";
-            //dbConnector.Connect();
-            //dbConnector.DoDML(cmdStr);
-            //dbConnector.Close();
-            lblID.Text = $"Inspection: {FindLargestID("InspectionID", "tblInspection")}";
-            //
-            
             FillPplCmb(cmbDuty, 6);
             FillPplCmb(cmbLead, 7);
             FillLocCmb();
             DefaultInspection();
+            lblID.Text = $"Inspection ID: {FindLargestID("InspectionID", "tblInspection")}";
+            FillListViewBox();
+        }
+        private void FillListViewBox()
+        {
+            clsDBConnector dbConnector = new clsDBConnector();
+            OleDbDataReader dr;
+            string sqlStr;
+            dbConnector.Connect();
+            sqlStr = "SELECT PageName FROM tblPage";
+            dr = dbConnector.DoSQL(sqlStr);
+            listView1.Items.Clear();
+            while (dr.Read())
+            {
+                listView1.Items.Add(dr[0].ToString());
+            }
+            dbConnector.Close();
 
         }
-
         private void DefaultInspection()
         {
             string Location = "", Duty = "", Lead ="";
@@ -92,6 +98,7 @@ namespace NoaHunterNEA
             }
             string cmdStr = "INSERT INTO tblInspection  (Location, DutyManager, LeadInstructor, InspectionDate) " +
                 $"VALUES ({Location},{Duty},{Lead},'{DateTime.Now.ToString()}')";
+            dtpStart.Value = DateTime.Now;
             cmbLocation.SelectedValue = Location;
             dbConnector.DoDML(cmdStr);
             dbConnector.Close();
@@ -130,6 +137,11 @@ namespace NoaHunterNEA
 
 
         private void cmbLead_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
 
         }
