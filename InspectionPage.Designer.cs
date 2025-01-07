@@ -38,15 +38,16 @@
             this.lblLead = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lstPage = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnPages = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblID
             // 
             this.lblID.AutoSize = true;
             this.lblID.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.lblID.Location = new System.Drawing.Point(453, 59);
+            this.lblID.Location = new System.Drawing.Point(300, 50);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(157, 26);
             this.lblID.TabIndex = 0;
@@ -56,7 +57,7 @@
             // cmbLocation
             // 
             this.cmbLocation.FormattingEnabled = true;
-            this.cmbLocation.Location = new System.Drawing.Point(192, 110);
+            this.cmbLocation.Location = new System.Drawing.Point(180, 186);
             this.cmbLocation.Name = "cmbLocation";
             this.cmbLocation.Size = new System.Drawing.Size(200, 21);
             this.cmbLocation.TabIndex = 1;
@@ -64,7 +65,7 @@
             // cmbDuty
             // 
             this.cmbDuty.FormattingEnabled = true;
-            this.cmbDuty.Location = new System.Drawing.Point(192, 167);
+            this.cmbDuty.Location = new System.Drawing.Point(180, 243);
             this.cmbDuty.Name = "cmbDuty";
             this.cmbDuty.Size = new System.Drawing.Size(200, 21);
             this.cmbDuty.TabIndex = 2;
@@ -72,7 +73,7 @@
             // cmbLead
             // 
             this.cmbLead.FormattingEnabled = true;
-            this.cmbLead.Location = new System.Drawing.Point(192, 226);
+            this.cmbLead.Location = new System.Drawing.Point(180, 302);
             this.cmbLead.Name = "cmbLead";
             this.cmbLead.Size = new System.Drawing.Size(200, 21);
             this.cmbLead.TabIndex = 3;
@@ -80,7 +81,7 @@
             // 
             // dtpStart
             // 
-            this.dtpStart.Location = new System.Drawing.Point(192, 62);
+            this.dtpStart.Location = new System.Drawing.Point(180, 138);
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(200, 20);
             this.dtpStart.TabIndex = 4;
@@ -89,7 +90,7 @@
             // lblLocation
             // 
             this.lblLocation.AutoSize = true;
-            this.lblLocation.Location = new System.Drawing.Point(72, 110);
+            this.lblLocation.Location = new System.Drawing.Point(60, 186);
             this.lblLocation.Name = "lblLocation";
             this.lblLocation.Size = new System.Drawing.Size(48, 13);
             this.lblLocation.TabIndex = 5;
@@ -99,7 +100,7 @@
             // lblDuty
             // 
             this.lblDuty.AutoSize = true;
-            this.lblDuty.Location = new System.Drawing.Point(72, 167);
+            this.lblDuty.Location = new System.Drawing.Point(60, 243);
             this.lblDuty.Name = "lblDuty";
             this.lblDuty.Size = new System.Drawing.Size(74, 13);
             this.lblDuty.TabIndex = 6;
@@ -108,7 +109,7 @@
             // lblLead
             // 
             this.lblLead.AutoSize = true;
-            this.lblLead.Location = new System.Drawing.Point(72, 226);
+            this.lblLead.Location = new System.Drawing.Point(60, 302);
             this.lblLead.Name = "lblLead";
             this.lblLead.Size = new System.Drawing.Size(78, 13);
             this.lblLead.TabIndex = 7;
@@ -117,7 +118,7 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(72, 62);
+            this.lblDate.Location = new System.Drawing.Point(60, 138);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(55, 13);
             this.lblDate.TabIndex = 8;
@@ -125,7 +126,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(75, 272);
+            this.btnUpdate.Location = new System.Drawing.Point(63, 348);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(317, 42);
             this.btnUpdate.TabIndex = 9;
@@ -133,30 +134,41 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // listView1
+            // lstPage
             // 
-            this.listView1.CheckBoxes = true;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lstPage.CheckBoxes = true;
+            this.lstPage.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(458, 110);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(152, 204);
-            this.listView1.TabIndex = 10;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.lstPage.HideSelection = false;
+            this.lstPage.Location = new System.Drawing.Point(446, 138);
+            this.lstPage.Name = "lstPage";
+            this.lstPage.Size = new System.Drawing.Size(152, 185);
+            this.lstPage.TabIndex = 10;
+            this.lstPage.UseCompatibleStateImageBehavior = false;
+            this.lstPage.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Active Pages";
             this.columnHeader1.Width = 140;
             // 
+            // btnPages
+            // 
+            this.btnPages.Location = new System.Drawing.Point(446, 348);
+            this.btnPages.Name = "btnPages";
+            this.btnPages.Size = new System.Drawing.Size(152, 42);
+            this.btnPages.TabIndex = 11;
+            this.btnPages.Text = "Open Pages";
+            this.btnPages.UseVisualStyleBackColor = true;
+            this.btnPages.Click += new System.EventHandler(this.btnPages_Click);
+            // 
             // InspectionPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.btnPages);
+            this.Controls.Add(this.lstPage);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.lblLead);
@@ -187,7 +199,8 @@
         private System.Windows.Forms.Label lblLead;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lstPage;
         private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.Button btnPages;
     }
 }

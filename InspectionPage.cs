@@ -33,16 +33,16 @@ namespace NoaHunterNEA
         {
         }
 
-        private void FillPplCmb(ComboBox comboName,int skill)
+        private void FillPplCmb(ComboBox comboName, int skill)
         {
             comboName.Items.Clear();
             clsDBConnector dBConnector = new clsDBConnector();
             dBConnector.Connect();
             //string sqlString = "SELECT UserID, Sname FROM tblUsers ";
             string sqlString = "SELECT        tblUsers.UserID, (tblUsers.Sname & " + "', '" + " & tblUsers.Fname) as Name" +
-                               " FROM(tblTraining INNER JOIN"+
-                               " tblUsers ON tblTraining.UserID = tblUsers.UserID)"+
-                               $" WHERE(tblTraining.SkillID = {skill})"+
+                               " FROM(tblTraining INNER JOIN" +
+                               " tblUsers ON tblTraining.UserID = tblUsers.UserID)" +
+                               $" WHERE(tblTraining.SkillID = {skill})" +
                                " ORDER BY Sname, Fname";
             OleDbDataAdapter da = new OleDbDataAdapter(sqlString, dBConnector.GetConnectionString());
             DataSet ds = new DataSet();
@@ -69,17 +69,17 @@ namespace NoaHunterNEA
             dbConnector.Connect();
             sqlStr = "SELECT PageName FROM tblPage";
             dr = dbConnector.DoSQL(sqlStr);
-            listView1.Items.Clear();
+            lstPage.Items.Clear();
             while (dr.Read())
             {
-                listView1.Items.Add(dr[0].ToString());
+                lstPage.Items.Add(dr[0].ToString());
             }
             dbConnector.Close();
 
         }
         private void DefaultInspection()
         {
-            string Location = "", Duty = "", Lead ="";
+            string Location = "", Duty = "", Lead = "";
             //Read most recent record in tblInspection
             clsDBConnector dbConnector = new clsDBConnector();
             OleDbDataReader dr;
@@ -144,6 +144,17 @@ namespace NoaHunterNEA
         private void btnUpdate_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnPages_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < lstPage.Items.Count; i++)
+            {
+                if (lstPage.Items[i].Checked == true)
+                {
+                    MessageBox.Show(lstPage.Items[i].Text + " is selected");
+                }
+            }
         }
     }
 }
