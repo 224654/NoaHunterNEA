@@ -30,19 +30,19 @@
         {
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblLocation = new System.Windows.Forms.Label();
-            this.lblDuty = new System.Windows.Forms.Label();
-            this.dtpStart = new System.Windows.Forms.DateTimePicker();
-            this.lblLead = new System.Windows.Forms.Label();
-            this.cmbLead = new System.Windows.Forms.ComboBox();
-            this.lblDate = new System.Windows.Forms.Label();
-            this.cmbDuty = new System.Windows.Forms.ComboBox();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.cmbLocation = new System.Windows.Forms.ComboBox();
+            this.btnPages = new System.Windows.Forms.Button();
+            this.lblID = new System.Windows.Forms.Label();
             this.lstPage = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblID = new System.Windows.Forms.Label();
-            this.btnPages = new System.Windows.Forms.Button();
+            this.cmbLocation = new System.Windows.Forms.ComboBox();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.cmbDuty = new System.Windows.Forms.ComboBox();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.cmbLead = new System.Windows.Forms.ComboBox();
+            this.lblLead = new System.Windows.Forms.Label();
+            this.dtpStart = new System.Windows.Forms.DateTimePicker();
+            this.lblDuty = new System.Windows.Forms.Label();
+            this.lblLocation = new System.Windows.Forms.Label();
             this.Pages = new System.Windows.Forms.TabControl();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -78,86 +78,28 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(777, 410);
             this.panel1.TabIndex = 13;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // lblLocation
+            // btnPages
             // 
-            this.lblLocation.AutoSize = true;
-            this.lblLocation.Location = new System.Drawing.Point(51, 153);
-            this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(48, 13);
-            this.lblLocation.TabIndex = 5;
-            this.lblLocation.Text = "Location";
-            this.lblLocation.Click += new System.EventHandler(this.label2_Click);
+            this.btnPages.Location = new System.Drawing.Point(437, 315);
+            this.btnPages.Name = "btnPages";
+            this.btnPages.Size = new System.Drawing.Size(152, 42);
+            this.btnPages.TabIndex = 11;
+            this.btnPages.Text = "Open Pages";
+            this.btnPages.UseVisualStyleBackColor = true;
+            this.btnPages.Click += new System.EventHandler(this.btnPages_Click);
             // 
-            // lblDuty
+            // lblID
             // 
-            this.lblDuty.AutoSize = true;
-            this.lblDuty.Location = new System.Drawing.Point(51, 210);
-            this.lblDuty.Name = "lblDuty";
-            this.lblDuty.Size = new System.Drawing.Size(74, 13);
-            this.lblDuty.TabIndex = 6;
-            this.lblDuty.Text = "Duty Manager";
-            // 
-            // dtpStart
-            // 
-            this.dtpStart.Location = new System.Drawing.Point(171, 105);
-            this.dtpStart.Name = "dtpStart";
-            this.dtpStart.Size = new System.Drawing.Size(200, 20);
-            this.dtpStart.TabIndex = 4;
-            this.dtpStart.Value = new System.DateTime(2021, 1, 6, 0, 0, 0, 0);
-            // 
-            // lblLead
-            // 
-            this.lblLead.AutoSize = true;
-            this.lblLead.Location = new System.Drawing.Point(51, 269);
-            this.lblLead.Name = "lblLead";
-            this.lblLead.Size = new System.Drawing.Size(78, 13);
-            this.lblLead.TabIndex = 7;
-            this.lblLead.Text = "Lead Instructor";
-            // 
-            // cmbLead
-            // 
-            this.cmbLead.FormattingEnabled = true;
-            this.cmbLead.Location = new System.Drawing.Point(171, 269);
-            this.cmbLead.Name = "cmbLead";
-            this.cmbLead.Size = new System.Drawing.Size(200, 21);
-            this.cmbLead.TabIndex = 3;
-            this.cmbLead.SelectedIndexChanged += new System.EventHandler(this.cmbLead_SelectedIndexChanged);
-            // 
-            // lblDate
-            // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(51, 105);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(55, 13);
-            this.lblDate.TabIndex = 8;
-            this.lblDate.Text = "Start Time";
-            // 
-            // cmbDuty
-            // 
-            this.cmbDuty.FormattingEnabled = true;
-            this.cmbDuty.Location = new System.Drawing.Point(171, 210);
-            this.cmbDuty.Name = "cmbDuty";
-            this.cmbDuty.Size = new System.Drawing.Size(200, 21);
-            this.cmbDuty.TabIndex = 2;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(54, 315);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(317, 42);
-            this.btnUpdate.TabIndex = 9;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // cmbLocation
-            // 
-            this.cmbLocation.FormattingEnabled = true;
-            this.cmbLocation.Location = new System.Drawing.Point(171, 153);
-            this.cmbLocation.Name = "cmbLocation";
-            this.cmbLocation.Size = new System.Drawing.Size(200, 21);
-            this.cmbLocation.TabIndex = 1;
+            this.lblID.AutoSize = true;
+            this.lblID.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblID.Location = new System.Drawing.Point(49, 32);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(157, 26);
+            this.lblID.TabIndex = 0;
+            this.lblID.Text = "Inspection ID:\\t";
+            this.lblID.Click += new System.EventHandler(this.label1_Click);
             // 
             // lstPage
             // 
@@ -177,26 +119,85 @@
             this.columnHeader1.Text = "Active Pages";
             this.columnHeader1.Width = 140;
             // 
-            // lblID
+            // cmbLocation
             // 
-            this.lblID.AutoSize = true;
-            this.lblID.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.lblID.Location = new System.Drawing.Point(49, 32);
-            this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(157, 26);
-            this.lblID.TabIndex = 0;
-            this.lblID.Text = "Inspection ID:\\t";
-            this.lblID.Click += new System.EventHandler(this.label1_Click);
+            this.cmbLocation.FormattingEnabled = true;
+            this.cmbLocation.Location = new System.Drawing.Point(171, 153);
+            this.cmbLocation.Name = "cmbLocation";
+            this.cmbLocation.Size = new System.Drawing.Size(200, 21);
+            this.cmbLocation.TabIndex = 1;
             // 
-            // btnPages
+            // btnUpdate
             // 
-            this.btnPages.Location = new System.Drawing.Point(437, 315);
-            this.btnPages.Name = "btnPages";
-            this.btnPages.Size = new System.Drawing.Size(152, 42);
-            this.btnPages.TabIndex = 11;
-            this.btnPages.Text = "Open Pages";
-            this.btnPages.UseVisualStyleBackColor = true;
-            this.btnPages.Click += new System.EventHandler(this.btnPages_Click);
+            this.btnUpdate.Location = new System.Drawing.Point(54, 315);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(317, 42);
+            this.btnUpdate.TabIndex = 9;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // cmbDuty
+            // 
+            this.cmbDuty.FormattingEnabled = true;
+            this.cmbDuty.Location = new System.Drawing.Point(171, 210);
+            this.cmbDuty.Name = "cmbDuty";
+            this.cmbDuty.Size = new System.Drawing.Size(200, 21);
+            this.cmbDuty.TabIndex = 2;
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Location = new System.Drawing.Point(51, 105);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(55, 13);
+            this.lblDate.TabIndex = 8;
+            this.lblDate.Text = "Start Time";
+            // 
+            // cmbLead
+            // 
+            this.cmbLead.FormattingEnabled = true;
+            this.cmbLead.Location = new System.Drawing.Point(171, 269);
+            this.cmbLead.Name = "cmbLead";
+            this.cmbLead.Size = new System.Drawing.Size(200, 21);
+            this.cmbLead.TabIndex = 3;
+            this.cmbLead.SelectedIndexChanged += new System.EventHandler(this.cmbLead_SelectedIndexChanged);
+            // 
+            // lblLead
+            // 
+            this.lblLead.AutoSize = true;
+            this.lblLead.Location = new System.Drawing.Point(51, 269);
+            this.lblLead.Name = "lblLead";
+            this.lblLead.Size = new System.Drawing.Size(78, 13);
+            this.lblLead.TabIndex = 7;
+            this.lblLead.Text = "Lead Instructor";
+            // 
+            // dtpStart
+            // 
+            this.dtpStart.Location = new System.Drawing.Point(171, 105);
+            this.dtpStart.Name = "dtpStart";
+            this.dtpStart.Size = new System.Drawing.Size(200, 20);
+            this.dtpStart.TabIndex = 4;
+            this.dtpStart.Value = new System.DateTime(2021, 1, 6, 0, 0, 0, 0);
+            // 
+            // lblDuty
+            // 
+            this.lblDuty.AutoSize = true;
+            this.lblDuty.Location = new System.Drawing.Point(51, 210);
+            this.lblDuty.Name = "lblDuty";
+            this.lblDuty.Size = new System.Drawing.Size(74, 13);
+            this.lblDuty.TabIndex = 6;
+            this.lblDuty.Text = "Duty Manager";
+            // 
+            // lblLocation
+            // 
+            this.lblLocation.AutoSize = true;
+            this.lblLocation.Location = new System.Drawing.Point(51, 153);
+            this.lblLocation.Name = "lblLocation";
+            this.lblLocation.Size = new System.Drawing.Size(48, 13);
+            this.lblLocation.TabIndex = 5;
+            this.lblLocation.Text = "Location";
+            this.lblLocation.Click += new System.EventHandler(this.label2_Click);
             // 
             // Pages
             // 

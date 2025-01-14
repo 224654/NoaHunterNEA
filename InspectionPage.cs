@@ -13,26 +13,6 @@ namespace NoaHunterNEA
 {
     public partial class InspectionPage : Form
     {
-        public InspectionPage()
-        {
-            InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void InspectionPage_Load(object sender, EventArgs e)
-        {
-        }
-
         private void FillPplCmb(ComboBox comboName, int skill)
         {
             comboName.Items.Clear();
@@ -133,8 +113,43 @@ namespace NoaHunterNEA
             cmbLocation.ValueMember = "LocationID";
             cmbLocation.DataSource = ds.Tables["tblLocations"];
         }
+        private void btnPages_Click(object sender, EventArgs e)
+        {
+            int pagecount = 0;
+            for (int i = 0; i < lstPage.Items.Count; i++)
+            {
+                if (lstPage.Items[i].Checked == true)
+                {
+                    pagecount++;
+                    //MessageBox.Show(lstPage.Items[i].Text + " is selected");
+                    Pages.TabPages.Add(lstPage.Items[i].Text);
+                    //create your control as an object
+                    CtrlInspectionTabTemplate newTabContent = new CtrlInspectionTabTemplate();
 
 
+                    Pages.TabPages[pagecount].Controls.Add(newTabContent);
+                }
+            }
+        }
+
+        public InspectionPage()
+        {
+            InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void InspectionPage_Load(object sender, EventArgs e)
+        {
+        }
 
         private void cmbLead_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -146,15 +161,9 @@ namespace NoaHunterNEA
 
         }
 
-        private void btnPages_Click(object sender, EventArgs e)
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            for (int i = 0; i < lstPage.Items.Count; i++)
-            {
-                if (lstPage.Items[i].Checked == true)
-                {
-                    MessageBox.Show(lstPage.Items[i].Text + " is selected");
-                }
-            }
+
         }
     }
 }
