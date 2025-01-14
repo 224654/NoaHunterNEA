@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace NoaHunterNEA
 {
-    public partial class CtrlInspectionTabTemplate : UserControl
+    public partial class CtrlThreeState : UserControl
     {
-        public CtrlInspectionTabTemplate()
+        public CtrlThreeState()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+
         }
     }
 }

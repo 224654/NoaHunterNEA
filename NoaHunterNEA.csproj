@@ -50,11 +50,11 @@
     <Compile Include="CLsUsers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CtrlInspectionTabTemplate.cs">
+    <Compile Include="CtrlThreeState.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CtrlInspectionTabTemplate.Designer.cs">
-      <DependentUpon>CtrlInspectionTabTemplate.cs</DependentUpon>
+    <Compile Include="CtrlThreeState.Designer.cs">
+      <DependentUpon>CtrlThreeState.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -76,8 +76,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CtrlInspectionTabTemplate.resx">
-      <DependentUpon>CtrlInspectionTabTemplate.cs</DependentUpon>
+    <EmbeddedResource Include="CtrlThreeState.resx">
+      <DependentUpon>CtrlThreeState.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

@@ -123,11 +123,17 @@ namespace NoaHunterNEA
                     pagecount++;
                     //MessageBox.Show(lstPage.Items[i].Text + " is selected");
                     Pages.TabPages.Add(lstPage.Items[i].Text);
-                    //create your control as an object
-                    CtrlInspectionTabTemplate newTabContent = new CtrlInspectionTabTemplate();
+                    //add a flp to the new tab page
+                    FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel();
+                    flowLayoutPanel.Size = new Size(772, 405);
+                    flowLayoutPanel.AutoScroll = true;
+                    //add your CCs to the pannel
 
 
-                    Pages.TabPages[pagecount].Controls.Add(newTabContent);
+
+
+
+                    Pages.TabPages[pagecount].Controls.Add(flowLayoutPanel);
                 }
             }
         }
