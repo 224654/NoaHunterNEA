@@ -54,6 +54,7 @@
             this.btnTbm.TabIndex = 1;
             this.btnTbm.Text = "TBM";
             this.btnTbm.UseVisualStyleBackColor = false;
+            this.btnTbm.Click += new System.EventHandler(this.btnTbm_Click);
             // 
             // btnFail
             // 
@@ -64,6 +65,7 @@
             this.btnFail.TabIndex = 2;
             this.btnFail.Text = "FAIL";
             this.btnFail.UseVisualStyleBackColor = false;
+            this.btnFail.Click += new System.EventHandler(this.btnFail_Click);
             // 
             // lblComponent
             // 
@@ -71,7 +73,7 @@
             this.lblComponent.Name = "lblComponent";
             this.lblComponent.Size = new System.Drawing.Size(117, 26);
             this.lblComponent.TabIndex = 3;
-            this.lblComponent.Text = "(Componet Name";
+            this.lblComponent.Text = "(Component Name";
             // 
             // CtrlThreeState
             // 

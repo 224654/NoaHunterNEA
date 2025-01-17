@@ -22,5 +22,15 @@ namespace NoaHunterNEA
 
 
         }
+
+        private void btnTbm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFail_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -123,16 +123,25 @@ namespace NoaHunterNEA
                     pagecount++;
                     //MessageBox.Show(lstPage.Items[i].Text + " is selected");
                     Pages.TabPages.Add(lstPage.Items[i].Text);
-                    //add a flp to the new tab page
+                    //Create a flp to add controls to
                     FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel();
                     flowLayoutPanel.Size = new Size(772, 405);
                     flowLayoutPanel.AutoScroll = true;
+
+                    List<int> heading = new List<int>();
+                    heading = //
+SELECT        tblHeading.HeadingID
+FROM(tblHeading INNER JOIN
+                         tblPage ON tblHeading.Page = tblPage.PageID)
+WHERE(tblPage.PageID = 1)
+ORDER BY tblHeading.HeadingID
+
                     //add your CCs to the pannel
+                    CtrlThreeState ctrlThreeState = new CtrlThreeState();
+                    flowLayoutPanel.Controls.Add(ctrlThreeState);
 
 
-
-
-
+                    //Add flp to page
                     Pages.TabPages[pagecount].Controls.Add(flowLayoutPanel);
                 }
             }
