@@ -47,12 +47,13 @@ namespace NoaHunterNEA
             OleDbDataReader dr;
             string sqlStr;
             dbConnector.Connect();
-            sqlStr = "SELECT PageName FROM tblPage";
+            sqlStr = "SELECT PageName, PageID FROM tblPage";
             dr = dbConnector.DoSQL(sqlStr);
             lstPage.Items.Clear();
             while (dr.Read())
             {
                 lstPage.Items.Add(dr[0].ToString());
+                lstPage.Items[lstPage.Items.Count -1].SubItems.Add(dr[1].ToString());
             }
             dbConnector.Close();
 
@@ -128,18 +129,29 @@ namespace NoaHunterNEA
                     flowLayoutPanel.Size = new Size(772, 405);
                     flowLayoutPanel.AutoScroll = true;
 
-                    List<int> heading = new List<int>();
-                    heading = //
-SELECT        tblHeading.HeadingID
-FROM(tblHeading INNER JOIN
-                         tblPage ON tblHeading.Page = tblPage.PageID)
-WHERE(tblPage.PageID = 1)
-ORDER BY tblHeading.HeadingID
+                    clsDBConnector dbConnector = new clsDBConnector();
+                    OleDbDataReader dr;
+                    string sqlStr;
+                    dbConnector.Connect();
+                    sqlStr =    "SELECT tblHeading.HeadingName" +
+                                " FROM(tblHeading INNER JOIN" +
+                                " tblPage ON tblHeading.Page = tblPage.PageID)" +
+                                $" WHERE(tblPage.PageID = {lstPage.Items[i].SubItems[1].Text})" +
+                                " ORDER BY tblHeading.HeadingID";
+                    dr = dbConnector.DoSQL(sqlStr);
+                    while (dr.Read()) // for each heading
+                    {
+                        // heading
+                        Label headinglabel = new Label();
+                        //headinglabel.Location = new Point(13, 13);
+                        headinglabel.Text = dr[0].ToString();
+                        flowLayoutPanel.Controls.Add(headinglabel);
 
-                    //add your CCs to the pannel
-                    CtrlThreeState ctrlThreeState = new CtrlThreeState();
-                    flowLayoutPanel.Controls.Add(ctrlThreeState);
-
+                        //add your CCs to the pannel
+                        CtrlThreeState ctrlThreeState = new CtrlThreeState();
+                        flowLayoutPanel.Controls.Add(ctrlThreeState);
+                    }
+                    dbConnector.Close();
 
                     //Add flp to page
                     Pages.TabPages[pagecount].Controls.Add(flowLayoutPanel);
