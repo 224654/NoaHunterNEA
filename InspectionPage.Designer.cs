@@ -34,6 +34,7 @@
             this.lblID = new System.Windows.Forms.Label();
             this.lstPage = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cmbLocation = new System.Windows.Forms.ComboBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.cmbDuty = new System.Windows.Forms.ComboBox();
@@ -44,7 +45,7 @@
             this.lblDuty = new System.Windows.Forms.Label();
             this.lblLocation = new System.Windows.Forms.Label();
             this.Pages = new System.Windows.Forms.TabControl();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.Pages.SuspendLayout();
@@ -107,7 +108,8 @@
             this.lstPage.CheckBoxes = true;
             this.lstPage.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader2});
+            this.columnHeader2,
+            this.columnHeader3});
             this.lstPage.HideSelection = false;
             this.lstPage.Location = new System.Drawing.Point(437, 105);
             this.lstPage.Name = "lstPage";
@@ -120,6 +122,11 @@
             // 
             this.columnHeader1.Text = "Active Pages";
             this.columnHeader1.Width = 140;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "PageID";
+            this.columnHeader2.Width = 0;
             // 
             // cmbLocation
             // 
@@ -210,10 +217,10 @@
             this.Pages.Size = new System.Drawing.Size(797, 448);
             this.Pages.TabIndex = 12;
             // 
-            // columnHeader2
+            // columnHeader3
             // 
-            this.columnHeader2.Text = "PageID";
-            this.columnHeader2.Width = 0;
+            this.columnHeader3.Text = "Opened";
+            this.columnHeader3.Width = 0;
             // 
             // InspectionPage
             // 
@@ -251,5 +258,6 @@
         private System.Windows.Forms.Label lblLocation;
         private System.Windows.Forms.TabControl Pages;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }

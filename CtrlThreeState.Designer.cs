@@ -36,7 +36,7 @@
             // 
             // btnPass
             // 
-            this.btnPass.BackColor = System.Drawing.Color.Lime;
+            this.btnPass.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.btnPass.Location = new System.Drawing.Point(138, 14);
             this.btnPass.Name = "btnPass";
             this.btnPass.Size = new System.Drawing.Size(69, 42);
@@ -47,7 +47,7 @@
             // 
             // btnTbm
             // 
-            this.btnTbm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnTbm.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.btnTbm.Location = new System.Drawing.Point(227, 14);
             this.btnTbm.Name = "btnTbm";
             this.btnTbm.Size = new System.Drawing.Size(69, 42);
@@ -58,7 +58,7 @@
             // 
             // btnFail
             // 
-            this.btnFail.BackColor = System.Drawing.Color.Red;
+            this.btnFail.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.btnFail.Location = new System.Drawing.Point(315, 14);
             this.btnFail.Name = "btnFail";
             this.btnFail.Size = new System.Drawing.Size(69, 42);
@@ -79,6 +79,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Silver;
             this.Controls.Add(this.lblComponent);
             this.Controls.Add(this.btnFail);
             this.Controls.Add(this.btnTbm);

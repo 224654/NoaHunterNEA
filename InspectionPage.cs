@@ -53,7 +53,8 @@ namespace NoaHunterNEA
             while (dr.Read())
             {
                 lstPage.Items.Add(dr[0].ToString());
-                lstPage.Items[lstPage.Items.Count -1].SubItems.Add(dr[1].ToString());
+                lstPage.Items[lstPage.Items.Count - 1].SubItems.Add(dr[1].ToString());
+                lstPage.Items[lstPage.Items.Count - 1].SubItems.Add("0");
             }
             dbConnector.Close();
 
@@ -119,8 +120,9 @@ namespace NoaHunterNEA
             int pagecount = 0;
             for (int i = 0; i < lstPage.Items.Count; i++)
             {
-                if (lstPage.Items[i].Checked == true)
+                if (lstPage.Items[i].Checked == true && lstPage.Items[i].SubItems[2].Text != "1")
                 {
+                    lstPage.Items[i].SubItems[2].Text = "1";
                     pagecount++;
                     //MessageBox.Show(lstPage.Items[i].Text + " is selected");
                     Pages.TabPages.Add(lstPage.Items[i].Text);
@@ -133,7 +135,7 @@ namespace NoaHunterNEA
                     OleDbDataReader dr;
                     string sqlStr;
                     dbConnector.Connect();
-                    sqlStr =    "SELECT tblHeading.HeadingName" +
+                    sqlStr = "SELECT tblHeading.HeadingName" +
                                 " FROM(tblHeading INNER JOIN" +
                                 " tblPage ON tblHeading.Page = tblPage.PageID)" +
                                 $" WHERE(tblPage.PageID = {lstPage.Items[i].SubItems[1].Text})" +
@@ -148,6 +150,7 @@ namespace NoaHunterNEA
                         flowLayoutPanel.Controls.Add(headinglabel);
 
                         //add your CCs to the pannel
+                        // obvs fill this in xd
                         CtrlThreeState ctrlThreeState = new CtrlThreeState();
                         flowLayoutPanel.Controls.Add(ctrlThreeState);
                     }
@@ -156,6 +159,10 @@ namespace NoaHunterNEA
                     //Add flp to page
                     Pages.TabPages[pagecount].Controls.Add(flowLayoutPanel);
                 }
+                /*else if (lstPage.Items[i].Checked == false && lstPage.Items[i].SubItems[2].Text == "1")
+                {
+                    //Pages.TabPages.Remove(lstPage.Items[i].Text);
+                }*/
             }
         }
 
