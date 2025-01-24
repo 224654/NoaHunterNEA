@@ -13,8 +13,6 @@ namespace NoaHunterNEA
 {
     public partial class InspectionPage : Form
     {
-    public int pagecount { get; set; }
-
         private void FillPplCmb(ComboBox comboName, int skill)
         {
             comboName.Items.Clear();
@@ -42,7 +40,6 @@ namespace NoaHunterNEA
             DefaultInspection();
             lblID.Text = $"Inspection ID: {FindLargestID("InspectionID", "tblInspection")}";
             FillListViewBox();
-            pagecount = 0;
         }
         private void FillListViewBox()
         {
@@ -120,7 +117,7 @@ namespace NoaHunterNEA
         }
         private void btnPages_Click(object sender, EventArgs e)
         {
-            
+            int pagecount = 0;
             for (int i = 0; i < lstPage.Items.Count; i++)
             {
                 if (lstPage.Items[i].Checked == true && lstPage.Items[i].SubItems[2].Text == "0")
@@ -162,16 +159,21 @@ namespace NoaHunterNEA
                     //Add flp to page
                     Pages.TabPages[pagecount].Controls.Add(flowLayoutPanel);
                 }
+
+                else if (lstPage.Items[i].Checked == true && lstPage.Items[i].SubItems[2].Text != "0")
+                {
+                    pagecount++;
+                    lstPage.Items[i].SubItems[2].Text = pagecount.ToString();
+                }
+
                 else if (lstPage.Items[i].Checked == false && lstPage.Items[i].SubItems[2].Text != "0")
                 {
                     TabPage tab = new TabPage();
                     tab.Tag = lstPage.Items[i].Text;
-                    //MessageBox.Show(tab.Tag.ToString());
+                    MessageBox.Show(tab.Tag.ToString());
                     Pages.TabPages.RemoveAt(Convert.ToInt32(lstPage.Items[i].SubItems[2].Text));
-                }
-                else if (lstPage.Items[i].Checked == true && lstPage.Items[i].SubItems[2].Text != "0")
-                {
-                    pagecount++;
+
+                    lstPage.Items[i].SubItems[2].Text = "0";
                 }
             }
         }
