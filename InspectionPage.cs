@@ -117,13 +117,26 @@ namespace NoaHunterNEA
         }
         private void btnPages_Click(object sender, EventArgs e)
         {
+            //MessageBox.Show(Pages.TabCount.ToString());
+
+            // removes all pages before so it can be opened again
+            //if (Pages.TabCount != 1)
+            {
+                for (int i = Pages.TabCount-1; i > 0; i--)
+                {
+                    Pages.TabPages.RemoveAt(i);
+                }
+            }
+            
+
             int pagecount = 0;
             for (int i = 0; i < lstPage.Items.Count; i++)
             {
-                if (lstPage.Items[i].Checked == true && lstPage.Items[i].SubItems[2].Text == "0")
+                if (lstPage.Items[i].Checked == true)// && lstPage.Items[i].SubItems[2].Text == "0")
                 {
                     pagecount++;
-                    lstPage.Items[i].SubItems[2].Text = pagecount.ToString();
+                    
+                    //lstPage.Items[i].SubItems[2].Text = pagecount.ToString();
                     //MessageBox.Show(lstPage.Items[i].Text + " is selected");
                     Pages.TabPages.Add(lstPage.Items[i].Text);
                     //Create a flp to add controls to
@@ -159,11 +172,12 @@ namespace NoaHunterNEA
                     //Add flp to page
                     Pages.TabPages[pagecount].Controls.Add(flowLayoutPanel);
                 }
-
+                /*
                 else if (lstPage.Items[i].Checked == true && lstPage.Items[i].SubItems[2].Text != "0")
                 {
                     pagecount++;
                     lstPage.Items[i].SubItems[2].Text = pagecount.ToString();
+                    Pages.TabPages.Insert(pagecount, lstPage.Items[i].Text);
                 }
 
                 else if (lstPage.Items[i].Checked == false && lstPage.Items[i].SubItems[2].Text != "0")
@@ -175,6 +189,7 @@ namespace NoaHunterNEA
 
                     lstPage.Items[i].SubItems[2].Text = "0";
                 }
+                */
             }
         }
 
