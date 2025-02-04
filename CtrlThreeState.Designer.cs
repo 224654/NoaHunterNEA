@@ -32,6 +32,8 @@
             this.btnTbm = new System.Windows.Forms.Button();
             this.btnFail = new System.Windows.Forms.Button();
             this.lblComponent = new System.Windows.Forms.Label();
+            this.Checker = new System.Windows.Forms.ComboBox();
+            this.lblChecker = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnPass
@@ -69,24 +71,45 @@
             // 
             // lblComponent
             // 
-            this.lblComponent.Location = new System.Drawing.Point(3, 29);
+            this.lblComponent.AutoSize = true;
+            this.lblComponent.Location = new System.Drawing.Point(17, 29);
             this.lblComponent.Name = "lblComponent";
-            this.lblComponent.Size = new System.Drawing.Size(117, 26);
+            this.lblComponent.Size = new System.Drawing.Size(95, 13);
             this.lblComponent.TabIndex = 3;
             this.lblComponent.Text = "(Component Name";
+            // 
+            // Checker
+            // 
+            this.Checker.FormattingEnabled = true;
+            this.Checker.Location = new System.Drawing.Point(138, 62);
+            this.Checker.Name = "Checker";
+            this.Checker.Size = new System.Drawing.Size(246, 21);
+            this.Checker.TabIndex = 4;
+            // 
+            // lblChecker
+            // 
+            this.lblChecker.AutoSize = true;
+            this.lblChecker.Location = new System.Drawing.Point(17, 65);
+            this.lblChecker.Name = "lblChecker";
+            this.lblChecker.Size = new System.Drawing.Size(82, 13);
+            this.lblChecker.TabIndex = 5;
+            this.lblChecker.Text = "Who Checked: ";
             // 
             // CtrlThreeState
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
+            this.Controls.Add(this.lblChecker);
+            this.Controls.Add(this.Checker);
             this.Controls.Add(this.lblComponent);
             this.Controls.Add(this.btnFail);
             this.Controls.Add(this.btnTbm);
             this.Controls.Add(this.btnPass);
             this.Name = "CtrlThreeState";
-            this.Size = new System.Drawing.Size(400, 69);
+            this.Size = new System.Drawing.Size(400, 101);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -96,5 +119,7 @@
         private System.Windows.Forms.Button btnTbm;
         private System.Windows.Forms.Button btnFail;
         private System.Windows.Forms.Label lblComponent;
+        private System.Windows.Forms.ComboBox Checker;
+        private System.Windows.Forms.Label lblChecker;
     }
 }

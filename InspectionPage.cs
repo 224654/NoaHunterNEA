@@ -121,13 +121,11 @@ namespace NoaHunterNEA
 
             // removes all pages before so it can be opened again
             //if (Pages.TabCount != 1)
+            for (int i = Pages.TabCount - 1; i > 0; i--)
             {
-                for (int i = Pages.TabCount-1; i > 0; i--)
-                {
-                    Pages.TabPages.RemoveAt(i);
-                }
+                Pages.TabPages.RemoveAt(i);
             }
-            
+
 
             int pagecount = 0;
             for (int i = 0; i < lstPage.Items.Count; i++)
@@ -135,7 +133,7 @@ namespace NoaHunterNEA
                 if (lstPage.Items[i].Checked == true)// && lstPage.Items[i].SubItems[2].Text == "0")
                 {
                     pagecount++;
-                    
+
                     //lstPage.Items[i].SubItems[2].Text = pagecount.ToString();
                     //MessageBox.Show(lstPage.Items[i].Text + " is selected");
                     Pages.TabPages.Add(lstPage.Items[i].Text);
@@ -148,7 +146,7 @@ namespace NoaHunterNEA
                     OleDbDataReader dr;
                     string sqlStr;
                     dbConnector.Connect();
-                    sqlStr = "SELECT tblHeading.HeadingName" +
+                    sqlStr = "SELECT tblHeading.HeadingName, tblHeading.HeadingID" +
                                 " FROM(tblHeading INNER JOIN" +
                                 " tblPage ON tblHeading.Page = tblPage.PageID)" +
                                 $" WHERE(tblPage.PageID = {lstPage.Items[i].SubItems[1].Text})" +
@@ -164,9 +162,32 @@ namespace NoaHunterNEA
 
                         //add your CCs to the pannel
                         // obvs fill this in xd
-                        CtrlThreeState ctrlThreeState = new CtrlThreeState();
-                        flowLayoutPanel.Controls.Add(ctrlThreeState);
+                        string sqlPanel =   "SELECT tblHeading.HeadingName" +
+                                            " FROM(tblHeading INNER JOIN" +
+                                            " tblPage ON tblHeading.Page = tblPage.PageID)" +
+                                            $" WHERE(tblPage.PageID = {dr[1]})" +
+                                            " ORDER BY tblHeading.HeadingID";
+
+                        OleDbDataReader drPanel = dbConnector.DoSQL(sqlPanel);
+                        while (drPanel.Read()) // for each heading
+                        {
+                            // heading
+                            Label headinglabel = new Label();
+                            //headinglabel.Location = new Point(13, 13);
+                            headinglabel.Text = dr[0].ToString();
+                            flowLayoutPanel.Controls.Add(headinglabel);
+
+                            //add your CCs to the pannel
+                            // obvs fill this in xd
+
+                            CtrlThreeState ctrlThreeState = new CtrlThreeState();
+                            flowLayoutPanel.Controls.Add(ctrlThreeState);
+                        }
+
+                        dbConnector.Close();
                     }
+
+
                     dbConnector.Close();
 
                     //Add flp to page
