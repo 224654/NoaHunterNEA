@@ -142,6 +142,7 @@ namespace NoaHunterNEA
                     flowLayoutPanel.Size = new Size(772, 405);
                     flowLayoutPanel.AutoScroll = true;
 
+                
                     clsDBConnector dbConnector = new clsDBConnector();
                     OleDbDataReader dr;
                     string sqlStr;
@@ -167,21 +168,29 @@ namespace NoaHunterNEA
 
                     foreach (clsHeading heading in lstHeading)
                     {
-                        //add your CCs to the pannel
-                        // obvs fill this in xd skibidi
-                        string sqlPanel =   "SELECT        tblComponents.ComponentName"+
-                                            " FROM(tblHeadingComponent INNER JOIN"+
-                                            " tblComponents ON tblHeadingComponent.ComponentID = tblComponents.ComponentID)"+
-                                            $" WHERE(tblHeadingComponent.HeadingID = {heading})"+
-                                            " ORDER BY tblComponents.ComponentName";
+                        // heading
+                        Label headinglabel = new Label();
+                        //headinglabel.Location = new Point(13, 13);
+                        headinglabel.Text = heading.Name.ToString();
+                        flowLayoutPanel.Controls.Add(headinglabel);
 
+                        //add your CCs to the pannel
+                        // obvs fill this in xd 
                         dbConnector = new clsDBConnector();
-                        OleDbDataReader drPanel = dbConnector.DoSQL(sqlPanel);
+                        OleDbDataReader drPanel;
+                        string sqlPanel =   " SELECT tblComponents.ComponentName" +
+                                            " FROM(tblHeadingComponent INNER JOIN" +
+                                            " tblComponents ON tblHeadingComponent.ComponentID = tblComponents.ComponentID)" +
+                                            $" WHERE(tblHeadingComponent.HeadingID = {heading.ID})" +
+                                            " ORDER BY tblComponents.ComponentName";
                         dbConnector.Connect();
+                        drPanel = dbConnector.DoSQL(sqlStr);
+
+                        
 
                         while (drPanel.Read()) // for each heading
                         {
-                            CtrlThreeState ctrlThreeState = new CtrlThreeState(drPanel.ToString());
+                            CtrlThreeState ctrlThreeState = new CtrlThreeState(drPanel[0].ToString());
                             flowLayoutPanel.Controls.Add(ctrlThreeState);
                         }
                     }

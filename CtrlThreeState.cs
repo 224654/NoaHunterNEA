@@ -23,6 +23,22 @@ namespace NoaHunterNEA
         private void CtrlThreeState_Load(object sender, EventArgs e)
         {
             FillCheckerCmb();
+            lblComponent.Text = ComponentName;
+        }
+        private void FillCheckerCmb()
+        {
+            cmbChecker.Items.Clear();
+            clsDBConnector dBConnector = new clsDBConnector();
+            dBConnector.Connect();
+            string sqlString =  " SELECT UserID, (Sname & " + "', '" + " & Fname) as Name"+
+                                " FROM tblUsers " +
+                                " ORDER BY Sname, Fname";
+            OleDbDataAdapter da = new OleDbDataAdapter(sqlString, dBConnector.GetConnectionString());
+            DataSet ds = new DataSet();
+            da.Fill(ds, "tblUsers");
+            cmbChecker.DisplayMember = "Name";
+            cmbChecker.ValueMember = "UserID";
+            cmbChecker.DataSource = ds.Tables["tblUsers"];
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -38,23 +54,6 @@ namespace NoaHunterNEA
         private void btnFail_Click(object sender, EventArgs e)
         {
 
-        }
-
-
-        private void FillCheckerCmb()
-        {
-            cmbChecker.Items.Clear();
-            clsDBConnector dBConnector = new clsDBConnector();
-            dBConnector.Connect();
-            string sqlString =  " SELECT UserID, (Sname & " + "', '" + " & Fname) as Name"+
-                                " FROM tblUsers " +
-                                " ORDER BY Sname, Fname";
-            OleDbDataAdapter da = new OleDbDataAdapter(sqlString, dBConnector.GetConnectionString());
-            DataSet ds = new DataSet();
-            da.Fill(ds, "tblUsers");
-            cmbChecker.DisplayMember = "Name";
-            cmbChecker.ValueMember = "UserID";
-            cmbChecker.DataSource = ds.Tables["tblUsers"];
         }
 
 
