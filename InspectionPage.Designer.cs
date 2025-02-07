@@ -133,6 +133,7 @@
             this.cmbLocation.Name = "cmbLocation";
             this.cmbLocation.Size = new System.Drawing.Size(200, 21);
             this.cmbLocation.TabIndex = 1;
+            this.cmbLocation.SelectedIndexChanged += new System.EventHandler(this.cmbLocation_SelectedIndexChanged);
             // 
             // btnUpdate
             // 

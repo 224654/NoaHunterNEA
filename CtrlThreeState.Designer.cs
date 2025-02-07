@@ -32,7 +32,7 @@
             this.btnTbm = new System.Windows.Forms.Button();
             this.btnFail = new System.Windows.Forms.Button();
             this.lblComponent = new System.Windows.Forms.Label();
-            this.Checker = new System.Windows.Forms.ComboBox();
+            this.cmbChecker = new System.Windows.Forms.ComboBox();
             this.lblChecker = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -78,13 +78,13 @@
             this.lblComponent.TabIndex = 3;
             this.lblComponent.Text = "(Component Name";
             // 
-            // Checker
+            // cmbChecker
             // 
-            this.Checker.FormattingEnabled = true;
-            this.Checker.Location = new System.Drawing.Point(138, 62);
-            this.Checker.Name = "Checker";
-            this.Checker.Size = new System.Drawing.Size(246, 21);
-            this.Checker.TabIndex = 4;
+            this.cmbChecker.FormattingEnabled = true;
+            this.cmbChecker.Location = new System.Drawing.Point(138, 62);
+            this.cmbChecker.Name = "cmbChecker";
+            this.cmbChecker.Size = new System.Drawing.Size(246, 21);
+            this.cmbChecker.TabIndex = 4;
             // 
             // lblChecker
             // 
@@ -101,13 +101,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.Controls.Add(this.lblChecker);
-            this.Controls.Add(this.Checker);
+            this.Controls.Add(this.cmbChecker);
             this.Controls.Add(this.lblComponent);
             this.Controls.Add(this.btnFail);
             this.Controls.Add(this.btnTbm);
             this.Controls.Add(this.btnPass);
             this.Name = "CtrlThreeState";
             this.Size = new System.Drawing.Size(400, 101);
+            this.Load += new System.EventHandler(this.CtrlThreeState_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,7 +120,7 @@
         private System.Windows.Forms.Button btnTbm;
         private System.Windows.Forms.Button btnFail;
         private System.Windows.Forms.Label lblComponent;
-        private System.Windows.Forms.ComboBox Checker;
+        private System.Windows.Forms.ComboBox cmbChecker;
         private System.Windows.Forms.Label lblChecker;
     }
 }

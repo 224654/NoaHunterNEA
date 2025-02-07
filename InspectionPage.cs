@@ -145,72 +145,52 @@ namespace NoaHunterNEA
                     clsDBConnector dbConnector = new clsDBConnector();
                     OleDbDataReader dr;
                     string sqlStr;
-                    dbConnector.Connect();
                     sqlStr = "SELECT tblHeading.HeadingName, tblHeading.HeadingID" +
                                 " FROM(tblHeading INNER JOIN" +
                                 " tblPage ON tblHeading.Page = tblPage.PageID)" +
                                 $" WHERE(tblPage.PageID = {lstPage.Items[i].SubItems[1].Text})" +
                                 " ORDER BY tblHeading.HeadingID";
+                    dbConnector.Connect();
                     dr = dbConnector.DoSQL(sqlStr);
+
+                    List<clsHeading> lstHeading = new List<clsHeading>();
+
                     while (dr.Read()) // for each heading
                     {
-                        // heading
-                        Label headinglabel = new Label();
-                        //headinglabel.Location = new Point(13, 13);
-                        headinglabel.Text = dr[0].ToString();
-                        flowLayoutPanel.Controls.Add(headinglabel);
-
-                        //add your CCs to the pannel
-                        // obvs fill this in xd
-                        string sqlPanel =   "SELECT tblHeading.HeadingName" +
-                                            " FROM(tblHeading INNER JOIN" +
-                                            " tblPage ON tblHeading.Page = tblPage.PageID)" +
-                                            $" WHERE(tblPage.PageID = {dr[1]})" +
-                                            " ORDER BY tblHeading.HeadingID";
-
-                        OleDbDataReader drPanel = dbConnector.DoSQL(sqlPanel);
-                        while (drPanel.Read()) // for each heading
-                        {
-                            // heading
-                            Label headinglabel = new Label();
-                            //headinglabel.Location = new Point(13, 13);
-                            headinglabel.Text = dr[0].ToString();
-                            flowLayoutPanel.Controls.Add(headinglabel);
-
-                            //add your CCs to the pannel
-                            // obvs fill this in xd
-
-                            CtrlThreeState ctrlThreeState = new CtrlThreeState();
-                            flowLayoutPanel.Controls.Add(ctrlThreeState);
-                        }
-
-                        dbConnector.Close();
+                        clsHeading Heading = new clsHeading();
+                        Heading.Name = dr[0].ToString();
+                        Heading.ID = Convert.ToInt32(dr[1].ToString());
+                        lstHeading.Add(Heading);
                     }
 
+                    dbConnector.Close();
+
+                    foreach (clsHeading heading in lstHeading)
+                    {
+                        //add your CCs to the pannel
+                        // obvs fill this in xd skibidi
+                        string sqlPanel =   "SELECT        tblComponents.ComponentName"+
+                                            " FROM(tblHeadingComponent INNER JOIN"+
+                                            " tblComponents ON tblHeadingComponent.ComponentID = tblComponents.ComponentID)"+
+                                            $" WHERE(tblHeadingComponent.HeadingID = {heading})"+
+                                            " ORDER BY tblComponents.ComponentName";
+
+                        dbConnector = new clsDBConnector();
+                        OleDbDataReader drPanel = dbConnector.DoSQL(sqlPanel);
+                        dbConnector.Connect();
+
+                        while (drPanel.Read()) // for each heading
+                        {
+                            CtrlThreeState ctrlThreeState = new CtrlThreeState(drPanel.ToString());
+                            flowLayoutPanel.Controls.Add(ctrlThreeState);
+                        }
+                    }
 
                     dbConnector.Close();
 
                     //Add flp to page
                     Pages.TabPages[pagecount].Controls.Add(flowLayoutPanel);
                 }
-                /*
-                else if (lstPage.Items[i].Checked == true && lstPage.Items[i].SubItems[2].Text != "0")
-                {
-                    pagecount++;
-                    lstPage.Items[i].SubItems[2].Text = pagecount.ToString();
-                    Pages.TabPages.Insert(pagecount, lstPage.Items[i].Text);
-                }
-
-                else if (lstPage.Items[i].Checked == false && lstPage.Items[i].SubItems[2].Text != "0")
-                {
-                    TabPage tab = new TabPage();
-                    tab.Tag = lstPage.Items[i].Text;
-                    MessageBox.Show(tab.Tag.ToString());
-                    Pages.TabPages.RemoveAt(Convert.ToInt32(lstPage.Items[i].SubItems[2].Text));
-
-                    lstPage.Items[i].SubItems[2].Text = "0";
-                }
-                */
             }
         }
 
@@ -244,6 +224,11 @@ namespace NoaHunterNEA
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cmbLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
