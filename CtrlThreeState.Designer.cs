@@ -39,9 +39,9 @@
             // btnPass
             // 
             this.btnPass.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btnPass.Location = new System.Drawing.Point(138, 14);
+            this.btnPass.Location = new System.Drawing.Point(284, 14);
             this.btnPass.Name = "btnPass";
-            this.btnPass.Size = new System.Drawing.Size(69, 42);
+            this.btnPass.Size = new System.Drawing.Size(134, 42);
             this.btnPass.TabIndex = 0;
             this.btnPass.Text = "PASS";
             this.btnPass.UseVisualStyleBackColor = false;
@@ -50,9 +50,9 @@
             // btnTbm
             // 
             this.btnTbm.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btnTbm.Location = new System.Drawing.Point(227, 14);
+            this.btnTbm.Location = new System.Drawing.Point(439, 14);
             this.btnTbm.Name = "btnTbm";
-            this.btnTbm.Size = new System.Drawing.Size(69, 42);
+            this.btnTbm.Size = new System.Drawing.Size(134, 42);
             this.btnTbm.TabIndex = 1;
             this.btnTbm.Text = "TBM";
             this.btnTbm.UseVisualStyleBackColor = false;
@@ -61,9 +61,9 @@
             // btnFail
             // 
             this.btnFail.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btnFail.Location = new System.Drawing.Point(315, 14);
+            this.btnFail.Location = new System.Drawing.Point(593, 14);
             this.btnFail.Name = "btnFail";
-            this.btnFail.Size = new System.Drawing.Size(69, 42);
+            this.btnFail.Size = new System.Drawing.Size(134, 42);
             this.btnFail.TabIndex = 2;
             this.btnFail.Text = "FAIL";
             this.btnFail.UseVisualStyleBackColor = false;
@@ -72,28 +72,30 @@
             // lblComponent
             // 
             this.lblComponent.AutoSize = true;
-            this.lblComponent.Location = new System.Drawing.Point(17, 29);
+            this.lblComponent.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.lblComponent.Location = new System.Drawing.Point(12, 14);
             this.lblComponent.Name = "lblComponent";
-            this.lblComponent.Size = new System.Drawing.Size(95, 13);
+            this.lblComponent.Size = new System.Drawing.Size(251, 31);
             this.lblComponent.TabIndex = 3;
-            this.lblComponent.Text = "(Component Name";
+            this.lblComponent.Text = "(Component Name)";
             // 
             // cmbChecker
             // 
             this.cmbChecker.FormattingEnabled = true;
-            this.cmbChecker.Location = new System.Drawing.Point(138, 62);
+            this.cmbChecker.Location = new System.Drawing.Point(284, 62);
             this.cmbChecker.Name = "cmbChecker";
-            this.cmbChecker.Size = new System.Drawing.Size(246, 21);
+            this.cmbChecker.Size = new System.Drawing.Size(443, 21);
             this.cmbChecker.TabIndex = 4;
             // 
             // lblChecker
             // 
             this.lblChecker.AutoSize = true;
-            this.lblChecker.Location = new System.Drawing.Point(17, 65);
+            this.lblChecker.Location = new System.Drawing.Point(196, 65);
             this.lblChecker.Name = "lblChecker";
             this.lblChecker.Size = new System.Drawing.Size(82, 13);
             this.lblChecker.TabIndex = 5;
             this.lblChecker.Text = "Who Checked: ";
+            this.lblChecker.Click += new System.EventHandler(this.lblChecker_Click);
             // 
             // CtrlThreeState
             // 
@@ -107,7 +109,7 @@
             this.Controls.Add(this.btnTbm);
             this.Controls.Add(this.btnPass);
             this.Name = "CtrlThreeState";
-            this.Size = new System.Drawing.Size(400, 101);
+            this.Size = new System.Drawing.Size(740, 98);
             this.Load += new System.EventHandler(this.CtrlThreeState_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

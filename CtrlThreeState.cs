@@ -13,17 +13,17 @@ namespace NoaHunterNEA
 {
     public partial class CtrlThreeState : UserControl
     {
-        private string ComponentName { get; set; }
+        private int HeadingComponentID { get; set; }
 
-        public CtrlThreeState(string componentName)
+        public CtrlThreeState(string headingComponentID)
         {
             InitializeComponent();
-            ComponentName = componentName;
+            HeadingComponentID = Convert.ToInt32(headingComponentID);
         }
         private void CtrlThreeState_Load(object sender, EventArgs e)
         {
             FillCheckerCmb();
-            lblComponent.Text = ComponentName;
+            lblComponent.Text = // do an sql query for name xd;
         }
         private void FillCheckerCmb()
         {
@@ -56,6 +56,9 @@ namespace NoaHunterNEA
 
         }
 
+        private void lblChecker_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

@@ -141,6 +141,8 @@ namespace NoaHunterNEA
                     FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel();
                     flowLayoutPanel.Size = new Size(772, 405);
                     flowLayoutPanel.AutoScroll = true;
+                    flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
+                    flowLayoutPanel.WrapContents = false;
 
                 
                     clsDBConnector dbConnector = new clsDBConnector();
@@ -170,6 +172,7 @@ namespace NoaHunterNEA
                     {
                         // heading
                         Label headinglabel = new Label();
+                        headinglabel.Font = new Font("Microsoft Sans Serif", 30);
                         //headinglabel.Location = new Point(13, 13);
                         headinglabel.Text = heading.Name.ToString();
                         flowLayoutPanel.Controls.Add(headinglabel);
@@ -178,11 +181,14 @@ namespace NoaHunterNEA
                         // obvs fill this in xd 
                         dbConnector = new clsDBConnector();
                         OleDbDataReader drPanel;
-                        string sqlPanel =   " SELECT tblComponents.ComponentName" +
-                                            " FROM(tblHeadingComponent INNER JOIN" +
-                                            " tblComponents ON tblHeadingComponent.ComponentID = tblComponents.ComponentID)" +
-                                            $" WHERE(tblHeadingComponent.HeadingID = {heading.ID})" +
-                                            " ORDER BY tblComponents.ComponentName";
+                        
+
+
+
+                        string sqlPanel = " SELECT HeadingComponentID" +
+                                            " FROM tblHeadingComponent" +
+                                            $" WHERE(HeadingID = {heading.ID})" +
+                                            " ORDER BY HeadingComponentID";
                         dbConnector.Connect();
                         drPanel = dbConnector.DoSQL(sqlStr);
 
