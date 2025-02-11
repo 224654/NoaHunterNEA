@@ -13,6 +13,9 @@ namespace NoaHunterNEA
 {
     public partial class InspectionPage : Form
     {
+
+        public int inspectionID = FindLargestID("InspectionID", "tblInspection");
+
         private void FillPplCmb(ComboBox comboName, int skill)
         {
             comboName.Items.Clear();
@@ -38,7 +41,7 @@ namespace NoaHunterNEA
             FillPplCmb(cmbLead, 7);
             FillLocCmb();
             DefaultInspection();
-            lblID.Text = $"Inspection ID: {FindLargestID("InspectionID", "tblInspection")}";
+            lblID.Text = $"Inspection ID: {inspectionID}";
             FillListViewBox();
         }
         private void FillListViewBox()
@@ -173,7 +176,8 @@ namespace NoaHunterNEA
                         // heading
                         Label headinglabel = new Label();
                         headinglabel.Font = new Font("Microsoft Sans Serif", 30);
-                        headinglabel.Size = new Size(420, 42);
+                        headinglabel.AutoSize = true;
+                        //headinglabel.Size = new Size(420, 42);
                         //headinglabel.Location = new Point(13, 13);
                         headinglabel.Text = heading.Name.ToString();
                         flowLayoutPanel.Controls.Add(headinglabel);

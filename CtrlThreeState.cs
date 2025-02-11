@@ -56,20 +56,40 @@ namespace NoaHunterNEA
 
         private void button1_Click(object sender, EventArgs e)
         {
+            btnPass.BackColor = Color.FromArgb(0,192,0);
+            btnTbm.BackColor = SystemColors.ActiveBorder;
+            btnFail.BackColor = SystemColors.ActiveBorder;
 
+            clsDBConnector dbConnector = new clsDBConnector();
+            dbConnector.Connect();
+
+            string rating = "INSERT INTO tblCheck" +
+                $"VALUES ()";
+
+            dbConnector.DoDML(rating);
+            dbConnector.Close();
         }
 
         private void btnTbm_Click(object sender, EventArgs e)
         {
-
+            btnPass.BackColor = SystemColors.ActiveBorder;
+            btnTbm.BackColor = Color.FromArgb(192, 192, 0);
+            btnFail.BackColor = SystemColors.ActiveBorder;
         }
 
         private void btnFail_Click(object sender, EventArgs e)
         {
-
+            btnPass.BackColor = SystemColors.ActiveBorder;
+            btnTbm.BackColor = SystemColors.ActiveBorder;
+            btnFail.BackColor = Color.FromArgb(192, 0, 0);
         }
 
         private void lblChecker_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbChecker_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
