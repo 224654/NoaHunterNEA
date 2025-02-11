@@ -173,6 +173,7 @@ namespace NoaHunterNEA
                         // heading
                         Label headinglabel = new Label();
                         headinglabel.Font = new Font("Microsoft Sans Serif", 30);
+                        headinglabel.Size = new Size(420, 42);
                         //headinglabel.Location = new Point(13, 13);
                         headinglabel.Text = heading.Name.ToString();
                         flowLayoutPanel.Controls.Add(headinglabel);
@@ -181,22 +182,17 @@ namespace NoaHunterNEA
                         // obvs fill this in xd 
                         dbConnector = new clsDBConnector();
                         OleDbDataReader drPanel;
-                        
-
-
-
                         string sqlPanel = " SELECT HeadingComponentID" +
                                             " FROM tblHeadingComponent" +
                                             $" WHERE(HeadingID = {heading.ID})" +
                                             " ORDER BY HeadingComponentID";
                         dbConnector.Connect();
-                        drPanel = dbConnector.DoSQL(sqlStr);
-
-                        
+                        drPanel = dbConnector.DoSQL(sqlPanel);
 
                         while (drPanel.Read()) // for each heading
                         {
-                            CtrlThreeState ctrlThreeState = new CtrlThreeState(drPanel[0].ToString());
+                            string x = drPanel[0].ToString();
+                            CtrlThreeState ctrlThreeState = new CtrlThreeState(x);
                             flowLayoutPanel.Controls.Add(ctrlThreeState);
                         }
                     }

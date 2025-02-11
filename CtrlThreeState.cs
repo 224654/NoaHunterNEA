@@ -13,17 +13,30 @@ namespace NoaHunterNEA
 {
     public partial class CtrlThreeState : UserControl
     {
-        private int HeadingComponentID { get; set; }
+        private string HeadingComponentID { get; set; }
 
         public CtrlThreeState(string headingComponentID)
         {
             InitializeComponent();
-            HeadingComponentID = Convert.ToInt32(headingComponentID);
+            HeadingComponentID = headingComponentID;
         }
         private void CtrlThreeState_Load(object sender, EventArgs e)
         {
             FillCheckerCmb();
-            lblComponent.Text = // do an sql query for name xd;
+            clsDBConnector dbConnector = new clsDBConnector();
+            OleDbDataReader dr;
+            string sqlStr;
+            dbConnector.Connect();
+            sqlStr =    "SELECT tblComponents.ComponentName"+
+                        " FROM(tblComponents INNER JOIN"+
+                        " tblHeadingComponent ON tblComponents.ComponentID = tblHeadingComponent.ComponentID)"+
+                        $" WHERE(tblHeadingComponent.HeadingComponentID = {Convert.ToInt32(HeadingComponentID)})";
+            dr = dbConnector.DoSQL(sqlStr); 
+            while (dr.Read())
+            {
+                lblComponent.Text = dr[0].ToString();// do an sql query for name xd;
+            }
+            dbConnector.Close();
         }
         private void FillCheckerCmb()
         {
