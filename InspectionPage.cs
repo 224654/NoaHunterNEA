@@ -14,7 +14,7 @@ namespace NoaHunterNEA
     public partial class InspectionPage : Form
     {
 
-        public int inspectionID = FindLargestID("InspectionID", "tblInspection");
+        public int inspectionID { get; set; }
 
         private void FillPplCmb(ComboBox comboName, int skill)
         {
@@ -41,6 +41,7 @@ namespace NoaHunterNEA
             FillPplCmb(cmbLead, 7);
             FillLocCmb();
             DefaultInspection();
+            inspectionID = FindLargestID("InspectionID", "tblInspection");
             lblID.Text = $"Inspection ID: {inspectionID}";
             FillListViewBox();
         }
@@ -120,6 +121,7 @@ namespace NoaHunterNEA
         }
         private void btnPages_Click(object sender, EventArgs e)
         {
+            
             //MessageBox.Show(Pages.TabCount.ToString());
 
             // removes all pages before so it can be opened again
@@ -195,8 +197,7 @@ namespace NoaHunterNEA
 
                         while (drPanel.Read()) // for each heading
                         {
-                            string x = drPanel[0].ToString();
-                            CtrlThreeState ctrlThreeState = new CtrlThreeState(x);
+                            CtrlThreeState ctrlThreeState = new CtrlThreeState(drPanel[0].ToString(),inspectionID);
                             flowLayoutPanel.Controls.Add(ctrlThreeState);
                         }
                     }
@@ -207,6 +208,10 @@ namespace NoaHunterNEA
                     Pages.TabPages[pagecount].Controls.Add(flowLayoutPanel);
                 }
             }
+        }
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
         }
 
         public InspectionPage()
@@ -233,10 +238,6 @@ namespace NoaHunterNEA
 
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
