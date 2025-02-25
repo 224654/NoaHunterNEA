@@ -16,6 +16,25 @@ namespace NoaHunterNEA
         private string HeadingComponentID { get; set; }
         private int InspectionID { get; set; }
 
+    public int LastCheck(int HeadingComponentID, string parameter)
+    {
+        clsDBConnector dbConnector = new clsDBConnector();
+        OleDbDataReader dr;
+        string sqlStr;
+        dbConnector.Connect();
+        sqlStr =    $"SELECT        {parameter}"+
+                    " FROM            tblCheck"+
+                    $" WHERE(HeadingComponent = {HeadingComponentID})"+
+                    " ORDER BY ChecksID DESC";
+        dr = dbConnector.DoSQL(sqlStr);
+        while (dr.Read())
+        {
+            return Convert.ToInt32(dr);
+        }
+        dbConnector.Close();
+        return 0;
+    }
+
         public CtrlThreeState(string headingComponentID, int inspectionID)
         {
             InitializeComponent();
@@ -47,12 +66,15 @@ namespace NoaHunterNEA
             OleDbDataReader dr;
             string sqlStr;
             dbConnector.Connect();
-            sqlStr =    "SELECT Rating"+
-                        " FROM tblCheck"+
-                        $" WHERE(HeadingComponent = {HeadingComponentID})";
+            sqlStr = "SELECT (tblUsers.Sname & " + "', '" + " & tblUsers.Sname) as Name, tblCheck.UserID, tblCheck.HeadingComponent, tblCheck.Rating" +
+                        " FROM (tblCheck INNER JOIN" +
+                        " tblUsers ON tblCheck.UserID = tblUsers.UserID)" +
+                        $" WHERE(HeadingComponent = {HeadingComponentID})"+
+                        " ORDER BY tblCheck.ChecksID DESC";
             dr = dbConnector.DoSQL(sqlStr);
             while (dr.Read())
             {
+                cmbChecker.SelectedValue = dr[0].ToString();
                 return Convert.ToInt32(dr[0]);
             }
             dbConnector.Close();

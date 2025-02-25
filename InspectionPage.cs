@@ -61,8 +61,8 @@ namespace NoaHunterNEA
                 lstPage.Items[lstPage.Items.Count - 1].SubItems.Add("0");
             }
             dbConnector.Close();
-
         }
+
         private void DefaultInspection()
         {
             string Location = "", Duty = "", Lead = "";
@@ -121,11 +121,7 @@ namespace NoaHunterNEA
         }
         private void btnPages_Click(object sender, EventArgs e)
         {
-            
-            //MessageBox.Show(Pages.TabCount.ToString());
-
             // removes all pages before so it can be opened again
-            //if (Pages.TabCount != 1)
             for (int i = Pages.TabCount - 1; i > 0; i--)
             {
                 Pages.TabPages.RemoveAt(i);
@@ -135,21 +131,20 @@ namespace NoaHunterNEA
             int pagecount = 0;
             for (int i = 0; i < lstPage.Items.Count; i++)
             {
-                if (lstPage.Items[i].Checked == true)// && lstPage.Items[i].SubItems[2].Text == "0")
+                if (lstPage.Items[i].Checked == true)
                 {
                     pagecount++;
 
-                    //lstPage.Items[i].SubItems[2].Text = pagecount.ToString();
-                    //MessageBox.Show(lstPage.Items[i].Text + " is selected");
                     Pages.TabPages.Add(lstPage.Items[i].Text);
-                    //Create a flp to add controls to
+
+                    // Create a flp to add controls to
                     FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel();
                     flowLayoutPanel.Size = new Size(772, 405);
                     flowLayoutPanel.AutoScroll = true;
                     flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
                     flowLayoutPanel.WrapContents = false;
 
-                
+                    // Getting headings
                     clsDBConnector dbConnector = new clsDBConnector();
                     OleDbDataReader dr;
                     string sqlStr;
@@ -179,13 +174,10 @@ namespace NoaHunterNEA
                         Label headinglabel = new Label();
                         headinglabel.Font = new Font("Microsoft Sans Serif", 30);
                         headinglabel.AutoSize = true;
-                        //headinglabel.Size = new Size(420, 42);
-                        //headinglabel.Location = new Point(13, 13);
                         headinglabel.Text = heading.Name.ToString();
                         flowLayoutPanel.Controls.Add(headinglabel);
 
                         //add your CCs to the pannel
-                        // obvs fill this in xd 
                         dbConnector = new clsDBConnector();
                         OleDbDataReader drPanel;
                         string sqlPanel = " SELECT HeadingComponentID" +
