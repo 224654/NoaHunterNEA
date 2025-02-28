@@ -92,6 +92,7 @@ namespace NoaHunterNEA
 
         public int FindLargestID(string PrimaryKey, string Table)
         {
+            int i = 0;
             clsDBConnector dbConnector = new clsDBConnector();
             OleDbDataReader dr;
             string sqlStr;
@@ -100,10 +101,10 @@ namespace NoaHunterNEA
             dr = dbConnector.DoSQL(sqlStr);
             while (dr.Read())
             {
-                return Convert.ToInt32(dr[0]);
+                i = Convert.ToInt32(dr[0]);
             }
             dbConnector.Close();
-            return 0;
+            return i;
         }
 
         private void FillLocCmb()

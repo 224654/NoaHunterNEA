@@ -15,14 +15,32 @@ namespace NoaHunterNEA
     {
         private string HeadingComponentID { get; set; }
         private int InspectionID { get; set; }
+        private int CheckID { get; set; }
 
-        
+
+        public int FindLargestID(string PrimaryKey, string Table)
+        {
+            clsDBConnector dbConnector = new clsDBConnector();
+            OleDbDataReader dr;
+            string sqlStr;
+            dbConnector.Connect();
+            sqlStr = $" SELECT MAX({PrimaryKey}) AS maxID FROM {Table} ";
+            dr = dbConnector.DoSQL(sqlStr);
+            while (dr.Read())
+            {
+                return Convert.ToInt32(dr[0]);
+            }
+            dbConnector.Close();
+            return 0;
+        }
+
         public CtrlThreeState(string headingComponentID, int inspectionID)
         {
             InitializeComponent();
             HeadingComponentID = headingComponentID;
-            InspectionID = inspectionID;
+            InspectionID = inspectionID; ;
         }
+
         private void CtrlThreeState_Load(object sender, EventArgs e)
         {
             FillCheckerCmb();
@@ -43,32 +61,67 @@ namespace NoaHunterNEA
             }
             dbConnector.Close();
 
+            CheckID = FindLargestID("ChecksID", "tblCheck");
         }
-
-        public void LastRating()
+        private void DefaultInspection()
         {
+            string Location = "", Duty = "", Lead = "";
+            //Read most recent record in tblInspection
             clsDBConnector dbConnector = new clsDBConnector();
             OleDbDataReader dr;
             string sqlStr;
             dbConnector.Connect();
-            sqlStr =    "SELECT tblCheck.Rating, (tblUsers.Sname & " + "', '" + " & tblUsers.Sname) as Name" +
-                        " FROM (tblCheck INNER JOIN" +
-                        " tblUsers ON tblCheck.UserID = tblUsers.UserID)" +
-                        $" WHERE(HeadingComponent = {HeadingComponentID})" +
-                        " ORDER BY tblCheck.ChecksID DESC";
+            sqlStr = $" SELECT Location, DutyManager, LeadInstructor " +
+                $"FROM tblInspection " +
+                $"WHERE InspectionID = {FindLargestID("InspectionID", "tblInspection")}";
             dr = dbConnector.DoSQL(sqlStr);
             while (dr.Read())
             {
-                int rating = Convert.ToInt32(dr[0]);
-                string check =  "INSERT INTO tblCheck (UserID, InspectionID, HeadingComponent, Rating) " +
-                                $" VALUES ({cmbChecker.SelectedValue}, {InspectionID}, {HeadingComponentID}, {rating})";
+                Location = dr[0].ToString();
+                Duty = dr[1].ToString();
+                Lead = dr[2].ToString();
+
+            }
+            dbConnector.Close();
+        }
+
+        public void LastRating()
+        {
+            int rating = 0;
+            clsDBConnector dbConnector = new clsDBConnector();
+            OleDbDataReader dr;
+            string sqlStr;
+            dbConnector.Connect();
+            sqlStr = "SELECT tblCheck.Rating, (tblUsers.Sname & " + "', '" + " & tblUsers.Sname) as Name" +
+                        " FROM (tblCheck INNER JOIN" +
+                        " tblUsers ON tblCheck.UserID = tblUsers.UserID)" +
+                        $" WHERE(HeadingComponent = {HeadingComponentID}) AND (tblCheck.ChecksID = {CheckID})";
+            dr = dbConnector.DoSQL(sqlStr);
+            while (dr.Read())
+            {
+                rating = Convert.ToInt32(dr[0]);
+                cmbChecker.SelectedValue = dr[1];
+
+            }
+            if (rating < 0)
+            {
+                string check = "INSERT INTO tblCheck (UserID, InspectionID, HeadingComponent, Rating) " +
+                                $" VALUES ({cmbChecker.SelectedValue}, {InspectionID}, {HeadingComponentID}, {3})";
+                dbConnector.DoDML(check);
+                btnPass.BackColor = Color.FromArgb(0, 192, 0);
+            }
+            else
+            {
+                
+                string check = "INSERT INTO tblCheck (UserID, InspectionID, HeadingComponent, Rating) " +
+                                    $" VALUES ({cmbChecker.SelectedValue}, {InspectionID}, {HeadingComponentID}, {rating})";
                 dbConnector.DoDML(check);
 
-                if (rating == 2)
+                if (rating == 3)
                 {
                     btnPass.BackColor = Color.FromArgb(0, 192, 0);
                 }
-                if (rating == 1)
+                else if (rating == 2)
                 {
                     btnTbm.BackColor = Color.FromArgb(192, 192, 0);
                 }
@@ -78,6 +131,8 @@ namespace NoaHunterNEA
                 }
             }
             dbConnector.Close();
+
+
         }
 
         private void FillCheckerCmb()
@@ -99,12 +154,12 @@ namespace NoaHunterNEA
         {
             clsDBConnector dbConnector = new clsDBConnector();
             dbConnector.Connect();
-            string chech =  "UPDATE tblCheck"+
-                            $" SET UserID = '{cmbChecker.SelectedValue}'," +
-                            $" InspectionID = '{InspectionID}'," +
-                            $" HeadingComponent ='{HeadingComponentID}'," +
-                            $" Rating = '{rating}'" +
-                            $" WHERE ({} = {})"; // fill
+            string chech = "UPDATE tblCheck" +
+                            $" SET UserID = {cmbChecker.SelectedValue}," +
+                            $" InspectionID = {InspectionID}," +
+                            $" HeadingComponent ={HeadingComponentID}," +
+                            $" Rating = {rating}" +
+                            $" WHERE (ChecksID = {CheckID})";
 
             dbConnector.DoDML(chech);
             dbConnector.Close();
@@ -116,7 +171,7 @@ namespace NoaHunterNEA
             btnTbm.BackColor = SystemColors.ActiveBorder;
             btnFail.BackColor = SystemColors.ActiveBorder;
 
-            SQLRating(2);
+            SQLRating(3);
         }
 
 
@@ -126,7 +181,7 @@ namespace NoaHunterNEA
             btnTbm.BackColor = Color.FromArgb(192, 192, 0);
             btnFail.BackColor = SystemColors.ActiveBorder;
 
-            SQLRating(1);
+            SQLRating(2);
         }
 
         private void btnFail_Click(object sender, EventArgs e)
@@ -135,7 +190,7 @@ namespace NoaHunterNEA
             btnTbm.BackColor = SystemColors.ActiveBorder;
             btnFail.BackColor = Color.FromArgb(192, 0, 0);
 
-            SQLRating(0);
+            SQLRating(1);
         }
 
         private void lblChecker_Click(object sender, EventArgs e)
