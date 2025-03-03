@@ -26,12 +26,13 @@ namespace NoaHunterNEA
             dbConnector.Connect();
             sqlStr = $" SELECT MAX({PrimaryKey}) AS maxID FROM {Table} ";
             dr = dbConnector.DoSQL(sqlStr);
+            int i = 0;
             while (dr.Read())
             {
-                return Convert.ToInt32(dr[0]);
+               i = Convert.ToInt32(dr[0]);
             }
             dbConnector.Close();
-            return 0;
+            return i;
         }
 
         public CtrlThreeState(string headingComponentID, int inspectionID)
@@ -44,7 +45,6 @@ namespace NoaHunterNEA
         private void CtrlThreeState_Load(object sender, EventArgs e)
         {
             FillCheckerCmb();
-            LastRating();
             // does an sql query for name xd;
             clsDBConnector dbConnector = new clsDBConnector();
             OleDbDataReader dr;
@@ -62,32 +62,14 @@ namespace NoaHunterNEA
             dbConnector.Close();
 
             CheckID = FindLargestID("ChecksID", "tblCheck");
-        }
-        private void DefaultInspection()
-        {
-            string Location = "", Duty = "", Lead = "";
-            //Read most recent record in tblInspection
-            clsDBConnector dbConnector = new clsDBConnector();
-            OleDbDataReader dr;
-            string sqlStr;
-            dbConnector.Connect();
-            sqlStr = $" SELECT Location, DutyManager, LeadInstructor " +
-                $"FROM tblInspection " +
-                $"WHERE InspectionID = {FindLargestID("InspectionID", "tblInspection")}";
-            dr = dbConnector.DoSQL(sqlStr);
-            while (dr.Read())
-            {
-                Location = dr[0].ToString();
-                Duty = dr[1].ToString();
-                Lead = dr[2].ToString();
 
-            }
-            dbConnector.Close();
+            LastRating();
         }
+        
 
         public void LastRating()
         {
-            int rating = 0;
+            int rating = 3;
             clsDBConnector dbConnector = new clsDBConnector();
             OleDbDataReader dr;
             string sqlStr;
@@ -95,44 +77,32 @@ namespace NoaHunterNEA
             sqlStr = "SELECT tblCheck.Rating, (tblUsers.Sname & " + "', '" + " & tblUsers.Sname) as Name" +
                         " FROM (tblCheck INNER JOIN" +
                         " tblUsers ON tblCheck.UserID = tblUsers.UserID)" +
-                        $" WHERE(HeadingComponent = {HeadingComponentID}) AND (tblCheck.ChecksID = {CheckID})";
+                        $" WHERE(HeadingComponent = {HeadingComponentID})" +// AND (tblCheck.ChecksID = {CheckID})";
+                        " ORDER BY tblCheck.ChecksID DESC";
             dr = dbConnector.DoSQL(sqlStr);
             while (dr.Read())
             {
                 rating = Convert.ToInt32(dr[0]);
-                cmbChecker.SelectedValue = dr[1];
-
+                //cmbChecker.SelectedValue = dr[1].ToString();
+                break;
             }
-            if (rating < 0)
+            string check = "INSERT INTO tblCheck (UserID, InspectionID, HeadingComponent, Rating) " +
+                                    $" VALUES ({cmbChecker.SelectedValue}, {InspectionID}, {HeadingComponentID}, {rating})";
+            dbConnector.DoDML(check);
+
+            if (rating == 3)
             {
-                string check = "INSERT INTO tblCheck (UserID, InspectionID, HeadingComponent, Rating) " +
-                                $" VALUES ({cmbChecker.SelectedValue}, {InspectionID}, {HeadingComponentID}, {3})";
-                dbConnector.DoDML(check);
                 btnPass.BackColor = Color.FromArgb(0, 192, 0);
+            }
+            else if (rating == 2)
+            {
+                btnTbm.BackColor = Color.FromArgb(192, 192, 0);
             }
             else
             {
-                
-                string check = "INSERT INTO tblCheck (UserID, InspectionID, HeadingComponent, Rating) " +
-                                    $" VALUES ({cmbChecker.SelectedValue}, {InspectionID}, {HeadingComponentID}, {rating})";
-                dbConnector.DoDML(check);
-
-                if (rating == 3)
-                {
-                    btnPass.BackColor = Color.FromArgb(0, 192, 0);
-                }
-                else if (rating == 2)
-                {
-                    btnTbm.BackColor = Color.FromArgb(192, 192, 0);
-                }
-                else
-                {
-                    btnFail.BackColor = Color.FromArgb(192, 0, 0);
-                }
+                btnFail.BackColor = Color.FromArgb(192, 0, 0);
             }
             dbConnector.Close();
-
-
         }
 
         private void FillCheckerCmb()
@@ -145,6 +115,7 @@ namespace NoaHunterNEA
                                 " ORDER BY Sname, Fname";
             OleDbDataAdapter da = new OleDbDataAdapter(sqlString, dBConnector.GetConnectionString());
             DataSet ds = new DataSet();
+            dBConnector.Close();
             da.Fill(ds, "tblUsers");
             cmbChecker.DisplayMember = "Name";
             cmbChecker.ValueMember = "UserID";
