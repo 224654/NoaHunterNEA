@@ -16,15 +16,17 @@ namespace NoaHunterNEA
         {
             InitializeComponent();
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnStart_Click(object sender, EventArgs e)
         {
-            InspectionPage inspectionPage = new InspectionPage();
+            int inspectionID = 0;
+            InspectionPage inspectionPage = new InspectionPage(inspectionID);
+            inspectionPage.ShowDialog(); //dialog stops user being able to use form below 
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            int inspectionID = Convert.ToInt32(txtActive.Text);
+            InspectionPage inspectionPage = new InspectionPage(inspectionID);
             inspectionPage.ShowDialog(); //dialog stops user being able to use form below 
         }
     }

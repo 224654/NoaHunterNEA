@@ -79,7 +79,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(777, 410);
             this.panel1.TabIndex = 13;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnPages
             // 
@@ -100,7 +99,6 @@
             this.lblID.Size = new System.Drawing.Size(157, 26);
             this.lblID.TabIndex = 0;
             this.lblID.Text = "Inspection ID:\\t";
-            this.lblID.Click += new System.EventHandler(this.label1_Click);
             // 
             // lstPage
             // 
@@ -133,7 +131,6 @@
             this.cmbLocation.Name = "cmbLocation";
             this.cmbLocation.Size = new System.Drawing.Size(200, 21);
             this.cmbLocation.TabIndex = 1;
-            this.cmbLocation.SelectedIndexChanged += new System.EventHandler(this.cmbLocation_SelectedIndexChanged);
             // 
             // btnUpdate
             // 
@@ -143,7 +140,6 @@
             this.btnUpdate.TabIndex = 9;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // cmbDuty
             // 
@@ -169,7 +165,6 @@
             this.cmbLead.Name = "cmbLead";
             this.cmbLead.Size = new System.Drawing.Size(200, 21);
             this.cmbLead.TabIndex = 3;
-            this.cmbLead.SelectedIndexChanged += new System.EventHandler(this.cmbLead_SelectedIndexChanged);
             // 
             // lblLead
             // 
@@ -205,7 +200,6 @@
             this.lblLocation.Size = new System.Drawing.Size(48, 13);
             this.lblLocation.TabIndex = 5;
             this.lblLocation.Text = "Location";
-            this.lblLocation.Click += new System.EventHandler(this.label2_Click);
             // 
             // Pages
             // 

@@ -33,9 +33,9 @@
             this.btnTraining = new System.Windows.Forms.Button();
             this.btnArchive = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtActive = new System.Windows.Forms.TextBox();
             this.lblActive = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -43,10 +43,11 @@
             // btnStart
             // 
             this.btnStart.BackColor = System.Drawing.Color.Black;
+            this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.btnStart.ForeColor = System.Drawing.Color.White;
-            this.btnStart.Location = new System.Drawing.Point(66, 102);
+            this.btnStart.Location = new System.Drawing.Point(38, 49);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(210, 54);
+            this.btnStart.Size = new System.Drawing.Size(238, 77);
             this.btnStart.TabIndex = 0;
             this.btnStart.Text = "Start Inspection";
             this.btnStart.UseVisualStyleBackColor = false;
@@ -55,10 +56,11 @@
             // btnTraining
             // 
             this.btnTraining.BackColor = System.Drawing.Color.Black;
+            this.btnTraining.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.btnTraining.ForeColor = System.Drawing.Color.White;
-            this.btnTraining.Location = new System.Drawing.Point(66, 273);
+            this.btnTraining.Location = new System.Drawing.Point(38, 275);
             this.btnTraining.Name = "btnTraining";
-            this.btnTraining.Size = new System.Drawing.Size(210, 54);
+            this.btnTraining.Size = new System.Drawing.Size(238, 54);
             this.btnTraining.TabIndex = 1;
             this.btnTraining.Text = "Update Training";
             this.btnTraining.UseVisualStyleBackColor = false;
@@ -66,57 +68,63 @@
             // btnArchive
             // 
             this.btnArchive.BackColor = System.Drawing.Color.Black;
+            this.btnArchive.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.btnArchive.ForeColor = System.Drawing.Color.White;
-            this.btnArchive.Location = new System.Drawing.Point(66, 351);
+            this.btnArchive.Location = new System.Drawing.Point(38, 351);
             this.btnArchive.Name = "btnArchive";
-            this.btnArchive.Size = new System.Drawing.Size(210, 54);
+            this.btnArchive.Size = new System.Drawing.Size(238, 54);
             this.btnArchive.TabIndex = 2;
             this.btnArchive.Text = "Archive";
             this.btnArchive.UseVisualStyleBackColor = false;
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(556, 351);
+            this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.btnSettings.Location = new System.Drawing.Point(508, 351);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(143, 54);
+            this.btnSettings.Size = new System.Drawing.Size(238, 54);
             this.btnSettings.TabIndex = 3;
             this.btnSettings.Text = "Account Settings";
             this.btnSettings.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtActive
             // 
-            this.textBox1.Location = new System.Drawing.Point(301, 194);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(201, 54);
-            this.textBox1.TabIndex = 4;
+            this.txtActive.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.txtActive.Location = new System.Drawing.Point(38, 199);
+            this.txtActive.Multiline = true;
+            this.txtActive.Name = "txtActive";
+            this.txtActive.Size = new System.Drawing.Size(105, 44);
+            this.txtActive.TabIndex = 4;
+            this.txtActive.WordWrap = false;
             // 
             // lblActive
             // 
             this.lblActive.BackColor = System.Drawing.Color.White;
-            this.lblActive.Location = new System.Drawing.Point(66, 194);
+            this.lblActive.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.lblActive.Location = new System.Drawing.Point(38, 159);
             this.lblActive.Name = "lblActive";
-            this.lblActive.Size = new System.Drawing.Size(131, 54);
+            this.lblActive.Size = new System.Drawing.Size(238, 37);
             this.lblActive.TabIndex = 5;
             this.lblActive.Text = "Active Inspections";
             this.lblActive.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblActive.Click += new System.EventHandler(this.label1_Click);
             // 
-            // button1
+            // btnSearch
             // 
-            this.button1.BackColor = System.Drawing.Color.Black;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(203, 194);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(73, 54);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnSearch.BackColor = System.Drawing.Color.Black;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.btnSearch.ForeColor = System.Drawing.Color.White;
+            this.btnSearch.Location = new System.Drawing.Point(149, 199);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(127, 44);
+            this.btnSearch.TabIndex = 6;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(421, 27);
+            this.pictureBox1.Location = new System.Drawing.Point(508, 49);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(319, 232);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -130,9 +138,9 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.lblActive);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtActive);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnArchive);
             this.Controls.Add(this.btnTraining);
@@ -151,9 +159,9 @@
         private System.Windows.Forms.Button btnTraining;
         private System.Windows.Forms.Button btnArchive;
         private System.Windows.Forms.Button btnSettings;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtActive;
         private System.Windows.Forms.Label lblActive;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

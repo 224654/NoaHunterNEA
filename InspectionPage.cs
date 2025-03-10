@@ -13,8 +13,29 @@ namespace NoaHunterNEA
 {
     public partial class InspectionPage : Form
     {
-
         public int inspectionID { get; set; }
+        public InspectionPage(int inspID)
+        {
+            inspectionID = inspID;
+            InitializeComponent();
+        }
+        private void InspectionPage_Load_1(object sender, EventArgs e)
+        {
+            FillPplCmb(cmbDuty, 6);
+            FillPplCmb(cmbLead, 7);
+            FillLocCmb();
+            if (inspectionID == 0)
+            {
+                NewInspection();
+                inspectionID = FindLargestID("InspectionID", "tblInspection");
+            }
+            else
+            {
+                ExistingInspection(inspectionID);
+            }
+            lblID.Text = $"Inspection ID: {inspectionID}";
+            FillListViewBox();
+        }
 
         private void FillPplCmb(ComboBox comboName, int skill)
         {
@@ -35,16 +56,6 @@ namespace NoaHunterNEA
             comboName.DataSource = ds.Tables["tblUsers"];
         }
 
-        private void InspectionPage_Load_1(object sender, EventArgs e)
-        {
-            FillPplCmb(cmbDuty, 6);
-            FillPplCmb(cmbLead, 7);
-            FillLocCmb();
-            DefaultInspection();
-            inspectionID = FindLargestID("InspectionID", "tblInspection");
-            lblID.Text = $"Inspection ID: {inspectionID}";
-            FillListViewBox();
-        }
         private void FillListViewBox()
         {
             clsDBConnector dbConnector = new clsDBConnector();
@@ -63,7 +74,7 @@ namespace NoaHunterNEA
             dbConnector.Close();
         }
 
-        private void DefaultInspection()
+        private void NewInspection()
         {
             string Location = "", Duty = "", Lead = "";
             //Read most recent record in tblInspection
@@ -88,6 +99,36 @@ namespace NoaHunterNEA
             cmbLocation.SelectedValue = Location;
             dbConnector.DoDML(cmdStr);
             dbConnector.Close();
+        }
+
+        private void ExistingInspection(int ID)
+        {
+            string Location = "", Duty = "", Lead = "";
+            DateTime InspectionDate = DateTime.Now;
+            //Read most recent record in tblInspection
+            clsDBConnector dbConnector = new clsDBConnector();
+            OleDbDataReader dr;
+            string sqlStr;
+            dbConnector.Connect();
+            sqlStr = $" SELECT Location, DutyManager, LeadInstructor, InspectionDate " +
+                $"FROM tblInspection " +
+                $"WHERE InspectionID = {ID}";
+            dr = dbConnector.DoSQL(sqlStr);
+            while (dr.Read())
+            {
+                Location = dr[0].ToString();
+                Duty = dr[1].ToString();
+                Lead = dr[2].ToString();
+                InspectionDate = Convert.ToDateTime(dr[3].ToString());
+            }
+            dbConnector.Close();
+            //string cmdStr = "INSERT INTO tblInspection  (Location, DutyManager, LeadInstructor, InspectionDate) " +
+            //   $"VALUES ({Location},{Duty},{Lead},'{DateTime.Now.ToString()}')";
+            dtpStart.Value = InspectionDate;
+            cmbLocation.SelectedValue = Location;
+            cmbDuty.SelectedValue = Duty;
+            cmbLead.SelectedValue = Lead;
+            //dbConnector.DoDML(cmdStr);
         }
 
         public int FindLargestID(string PrimaryKey, string Table)
@@ -201,45 +242,6 @@ namespace NoaHunterNEA
                     Pages.TabPages[pagecount].Controls.Add(flowLayoutPanel);
                 }
             }
-        }
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        public InspectionPage()
-        {
-            InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void InspectionPage_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void cmbLead_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void cmbLocation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

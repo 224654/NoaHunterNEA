@@ -100,7 +100,6 @@
             this.lblChecker.Size = new System.Drawing.Size(82, 13);
             this.lblChecker.TabIndex = 5;
             this.lblChecker.Text = "Who Checked: ";
-            this.lblChecker.Click += new System.EventHandler(this.lblChecker_Click);
             // 
             // CtrlThreeState
             // 

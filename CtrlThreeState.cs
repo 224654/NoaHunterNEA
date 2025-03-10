@@ -66,14 +66,16 @@ namespace NoaHunterNEA
 
             OleDbDataReader drb;
             dbConnector.Connect();
-            string exististance =   "SELECT Rating "+
-                                    "FROM tblCheck "+
+            string exististance =   "SELECT tblCheck.Rating, (tblUsers.Sname & " + "', '" + " & tblUsers.Fname) as Name " +
+                                    "FROM (tblCheck INNER JOIN " +
+                                    "tblUsers ON tblCheck.UserID = tblUsers.UserID) " +
                                     $"WHERE(HeadingComponent = {HeadingComponentID}) AND(InspectionID = {InspectionID})";
             drb = dbConnector.DoSQL(exististance);
             bool novel = true;
             while (drb.Read())
             {
                 Value = Convert.ToInt32(drb[0]);
+                cmbChecker.Text = drb[1].ToString();
                 novel = false;
                 Colour();
             }
@@ -191,11 +193,6 @@ namespace NoaHunterNEA
             btnFail.BackColor = Color.FromArgb(192, 0, 0);
             Value = 1;
             SQLRating();
-        }
-
-        private void lblChecker_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void cmbChecker_SelectedIndexChanged(object sender, EventArgs e)
