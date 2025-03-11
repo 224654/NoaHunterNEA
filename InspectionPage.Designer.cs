@@ -36,7 +36,6 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cmbLocation = new System.Windows.Forms.ComboBox();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.cmbDuty = new System.Windows.Forms.ComboBox();
             this.lblDate = new System.Windows.Forms.Label();
             this.cmbLead = new System.Windows.Forms.ComboBox();
@@ -67,7 +66,6 @@
             this.panel1.Controls.Add(this.lblID);
             this.panel1.Controls.Add(this.lstPage);
             this.panel1.Controls.Add(this.cmbLocation);
-            this.panel1.Controls.Add(this.btnUpdate);
             this.panel1.Controls.Add(this.cmbDuty);
             this.panel1.Controls.Add(this.lblDate);
             this.panel1.Controls.Add(this.cmbLead);
@@ -82,7 +80,7 @@
             // 
             // btnPages
             // 
-            this.btnPages.Location = new System.Drawing.Point(437, 315);
+            this.btnPages.Location = new System.Drawing.Point(437, 310);
             this.btnPages.Name = "btnPages";
             this.btnPages.Size = new System.Drawing.Size(152, 42);
             this.btnPages.TabIndex = 11;
@@ -107,9 +105,9 @@
             this.columnHeader1,
             this.columnHeader2});
             this.lstPage.HideSelection = false;
-            this.lstPage.Location = new System.Drawing.Point(437, 105);
+            this.lstPage.Location = new System.Drawing.Point(437, 100);
             this.lstPage.Name = "lstPage";
-            this.lstPage.Size = new System.Drawing.Size(152, 185);
+            this.lstPage.Size = new System.Drawing.Size(152, 191);
             this.lstPage.TabIndex = 10;
             this.lstPage.UseCompatibleStateImageBehavior = false;
             this.lstPage.View = System.Windows.Forms.View.Details;
@@ -127,32 +125,25 @@
             // cmbLocation
             // 
             this.cmbLocation.FormattingEnabled = true;
-            this.cmbLocation.Location = new System.Drawing.Point(171, 153);
+            this.cmbLocation.Location = new System.Drawing.Point(175, 175);
             this.cmbLocation.Name = "cmbLocation";
             this.cmbLocation.Size = new System.Drawing.Size(200, 21);
             this.cmbLocation.TabIndex = 1;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(54, 315);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(317, 42);
-            this.btnUpdate.TabIndex = 9;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.cmbLocation.SelectedIndexChanged += new System.EventHandler(this.cmbLocation_SelectedIndexChanged);
             // 
             // cmbDuty
             // 
             this.cmbDuty.FormattingEnabled = true;
-            this.cmbDuty.Location = new System.Drawing.Point(171, 210);
+            this.cmbDuty.Location = new System.Drawing.Point(175, 250);
             this.cmbDuty.Name = "cmbDuty";
             this.cmbDuty.Size = new System.Drawing.Size(200, 21);
             this.cmbDuty.TabIndex = 2;
+            this.cmbDuty.SelectedIndexChanged += new System.EventHandler(this.cmbDuty_SelectedIndexChanged);
             // 
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(51, 105);
+            this.lblDate.Location = new System.Drawing.Point(50, 100);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(55, 13);
             this.lblDate.TabIndex = 8;
@@ -161,15 +152,16 @@
             // cmbLead
             // 
             this.cmbLead.FormattingEnabled = true;
-            this.cmbLead.Location = new System.Drawing.Point(171, 269);
+            this.cmbLead.Location = new System.Drawing.Point(175, 325);
             this.cmbLead.Name = "cmbLead";
             this.cmbLead.Size = new System.Drawing.Size(200, 21);
             this.cmbLead.TabIndex = 3;
+            this.cmbLead.SelectedIndexChanged += new System.EventHandler(this.cmbLead_SelectedIndexChanged);
             // 
             // lblLead
             // 
             this.lblLead.AutoSize = true;
-            this.lblLead.Location = new System.Drawing.Point(51, 269);
+            this.lblLead.Location = new System.Drawing.Point(50, 325);
             this.lblLead.Name = "lblLead";
             this.lblLead.Size = new System.Drawing.Size(78, 13);
             this.lblLead.TabIndex = 7;
@@ -177,16 +169,17 @@
             // 
             // dtpStart
             // 
-            this.dtpStart.Location = new System.Drawing.Point(171, 105);
+            this.dtpStart.Location = new System.Drawing.Point(175, 100);
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(200, 20);
             this.dtpStart.TabIndex = 4;
             this.dtpStart.Value = new System.DateTime(2021, 1, 6, 0, 0, 0, 0);
+            this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged);
             // 
             // lblDuty
             // 
             this.lblDuty.AutoSize = true;
-            this.lblDuty.Location = new System.Drawing.Point(51, 210);
+            this.lblDuty.Location = new System.Drawing.Point(50, 250);
             this.lblDuty.Name = "lblDuty";
             this.lblDuty.Size = new System.Drawing.Size(74, 13);
             this.lblDuty.TabIndex = 6;
@@ -195,7 +188,7 @@
             // lblLocation
             // 
             this.lblLocation.AutoSize = true;
-            this.lblLocation.Location = new System.Drawing.Point(51, 153);
+            this.lblLocation.Location = new System.Drawing.Point(51, 175);
             this.lblLocation.Name = "lblLocation";
             this.lblLocation.Size = new System.Drawing.Size(48, 13);
             this.lblLocation.TabIndex = 5;
@@ -236,7 +229,6 @@
         private System.Windows.Forms.ListView lstPage;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ComboBox cmbLocation;
-        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.ComboBox cmbDuty;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.ComboBox cmbLead;

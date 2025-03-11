@@ -14,6 +14,7 @@ namespace NoaHunterNEA
     public partial class InspectionPage : Form
     {
         public int inspectionID { get; set; }
+        public bool started { get; set; }
         public InspectionPage(int inspID)
         {
             inspectionID = inspID;
@@ -21,6 +22,7 @@ namespace NoaHunterNEA
         }
         private void InspectionPage_Load_1(object sender, EventArgs e)
         {
+            started = false;
             FillPplCmb(cmbDuty, 6);
             FillPplCmb(cmbLead, 7);
             FillLocCmb();
@@ -35,6 +37,7 @@ namespace NoaHunterNEA
             }
             lblID.Text = $"Inspection ID: {inspectionID}";
             FillListViewBox();
+            started = true;
         }
 
         private void FillPplCmb(ComboBox comboName, int skill)
@@ -242,6 +245,43 @@ namespace NoaHunterNEA
                     Pages.TabPages[pagecount].Controls.Add(flowLayoutPanel);
                 }
             }
+        }
+        private void SQLUpdate()
+        {
+            if (started==true)
+            {
+                clsDBConnector dbConnector = new clsDBConnector();
+                dbConnector.Connect();
+                string chech = "UPDATE tblInspection" +
+                                $" SET Location = {cmbLocation.SelectedValue}," +
+                                $" DutyManager = {cmbDuty.SelectedValue}," +
+                                $" LeadInstructor ={cmbLead.SelectedValue}," +
+                                $" InspectionDate = '{dtpStart.Value}'" +
+                                $" WHERE (InspectionID = {inspectionID})";
+
+                dbConnector.DoDML(chech);
+                dbConnector.Close();
+            }
+        }
+
+
+        private void dtpStart_ValueChanged(object sender, EventArgs e)
+        {
+            SQLUpdate();
+        }
+
+        private void cmbLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SQLUpdate();
+        }
+
+        private void cmbDuty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SQLUpdate();
+        }
+        private void cmbLead_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SQLUpdate();
         }
     }
 }

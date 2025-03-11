@@ -25,9 +25,16 @@ namespace NoaHunterNEA
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            int inspectionID = Convert.ToInt32(txtActive.Text);
-            InspectionPage inspectionPage = new InspectionPage(inspectionID);
-            inspectionPage.ShowDialog(); //dialog stops user being able to use form below 
+            try
+            {
+                int inspectionID = Convert.ToInt32(txtActive.Text);
+                InspectionPage inspectionPage = new InspectionPage(inspectionID);
+                inspectionPage.ShowDialog(); //dialog stops user being able to use form below 
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("You did not enter an integar \nPlease try again");
+            }
         }
     }
 }
