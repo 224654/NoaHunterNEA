@@ -11,25 +11,28 @@ using System.Data.OleDb;
 
 namespace NoaHunterNEA
 {
-    public partial class Form1 : Form
+    public partial class OpenPage : Form
     {
-        public Form1()
+        public OpenPage()
         {
             InitializeComponent();
-        }
-
-        private void lstUsers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnGuest_Click(object sender, EventArgs e)
         {
             this.Hide();
-            HomePage homePage = new HomePage();
+            HomePage homePage = new HomePage(0);
             homePage.ShowDialog(); //dialog stops user being able to use form below // thxx ben
             this.Close();
             
+        }
+
+        private void btnIn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            SignIn signIn = new SignIn();
+            signIn.ShowDialog();
+            this.Close();
         }
     }
 }

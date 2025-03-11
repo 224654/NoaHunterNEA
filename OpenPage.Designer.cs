@@ -1,6 +1,6 @@
 ﻿namespace NoaHunterNEA
 {
-    partial class Form1
+    partial class OpenPage
     {
         /// <summary>
         /// Required designer variable.
@@ -41,6 +41,7 @@
             this.btnIn.TabIndex = 0;
             this.btnIn.Text = "Sign in";
             this.btnIn.UseVisualStyleBackColor = true;
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
             // 
             // btnUp
             // 
@@ -61,7 +62,7 @@
             this.btnGuest.UseVisualStyleBackColor = true;
             this.btnGuest.Click += new System.EventHandler(this.btnGuest_Click);
             // 
-            // Form1
+            // OpenPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -69,8 +70,8 @@
             this.Controls.Add(this.btnGuest);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnIn);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "OpenPage";
+            this.Text = "Opening Page";
             this.ResumeLayout(false);
 
         }

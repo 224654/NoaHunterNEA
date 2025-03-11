@@ -28,65 +28,67 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnIn = new System.Windows.Forms.Button();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.txtPass = new System.Windows.Forms.TextBox();
+            this.lblID = new System.Windows.Forms.Label();
+            this.lblPass = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // btnIn
             // 
-            this.button1.Location = new System.Drawing.Point(188, 226);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnIn.Location = new System.Drawing.Point(46, 171);
+            this.btnIn.Name = "btnIn";
+            this.btnIn.Size = new System.Drawing.Size(192, 44);
+            this.btnIn.TabIndex = 0;
+            this.btnIn.Text = "Sign in";
+            this.btnIn.UseVisualStyleBackColor = true;
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
             // 
-            // textBox1
+            // txtID
             // 
-            this.textBox1.Location = new System.Drawing.Point(163, 82);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
+            this.txtID.Location = new System.Drawing.Point(138, 50);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(100, 20);
+            this.txtID.TabIndex = 2;
+            this.txtID.Text = "1";
             // 
-            // textBox2
+            // txtPass
             // 
-            this.textBox2.Location = new System.Drawing.Point(163, 182);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 3;
+            this.txtPass.Location = new System.Drawing.Point(138, 103);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.Size = new System.Drawing.Size(100, 20);
+            this.txtPass.TabIndex = 3;
+            this.txtPass.Text = "Rushm0re";
             // 
-            // label1
+            // lblID
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(99, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
+            this.lblID.AutoSize = true;
+            this.lblID.Location = new System.Drawing.Point(43, 53);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(74, 13);
+            this.lblID.TabIndex = 4;
+            this.lblID.Text = "Enter User ID:";
             // 
-            // label2
+            // lblPass
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(99, 185);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "label2";
+            this.lblPass.AutoSize = true;
+            this.lblPass.Location = new System.Drawing.Point(43, 106);
+            this.lblPass.Name = "lblPass";
+            this.lblPass.Size = new System.Drawing.Size(81, 13);
+            this.lblPass.TabIndex = 5;
+            this.lblPass.Text = "Enter Password";
             // 
             // SignIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(281, 271);
+            this.Controls.Add(this.lblPass);
+            this.Controls.Add(this.lblID);
+            this.Controls.Add(this.txtPass);
+            this.Controls.Add(this.txtID);
+            this.Controls.Add(this.btnIn);
             this.Name = "SignIn";
             this.Text = "SignIn";
             this.ResumeLayout(false);
@@ -96,10 +98,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnIn;
+        private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.TextBox txtPass;
+        private System.Windows.Forms.Label lblID;
+        private System.Windows.Forms.Label lblPass;
     }
 }

@@ -57,11 +57,11 @@
     <Compile Include="CtrlThreeState.Designer.cs">
       <DependentUpon>CtrlThreeState.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="OpenPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="OpenPage.Designer.cs">
+      <DependentUpon>OpenPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Hashing.cs" />
     <Compile Include="HomePage.cs">
@@ -87,8 +87,8 @@
     <EmbeddedResource Include="CtrlThreeState.resx">
       <DependentUpon>CtrlThreeState.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="OpenPage.resx">
+      <DependentUpon>OpenPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomePage.resx">
       <DependentUpon>HomePage.cs</DependentUpon>

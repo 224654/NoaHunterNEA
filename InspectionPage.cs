@@ -57,6 +57,7 @@ namespace NoaHunterNEA
             comboName.DisplayMember = "Name";
             comboName.ValueMember = "UserID";
             comboName.DataSource = ds.Tables["tblUsers"];
+            dBConnector.Close();
         }
 
         private void FillListViewBox()
@@ -166,6 +167,7 @@ namespace NoaHunterNEA
         }
         private void btnPages_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             // removes all pages before so it can be opened again
             for (int i = Pages.TabCount - 1; i > 0; i--)
             {
@@ -245,6 +247,8 @@ namespace NoaHunterNEA
                     Pages.TabPages[pagecount].Controls.Add(flowLayoutPanel);
                 }
             }
+            this.Cursor = Cursors.Default;
+
         }
         private void SQLUpdate()
         {

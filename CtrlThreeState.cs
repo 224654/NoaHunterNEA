@@ -45,6 +45,7 @@ namespace NoaHunterNEA
 
         private void CtrlThreeState_Load(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             FillCheckerCmb();
             // does an sql query for name xd;
             clsDBConnector dbConnector = new clsDBConnector();
@@ -84,7 +85,9 @@ namespace NoaHunterNEA
             if (novel == true)
             {
                 LastRating();
-                            }
+            }
+
+            this.Cursor = Cursors.Default;
         }
 
 
@@ -108,7 +111,7 @@ namespace NoaHunterNEA
                 //MessageBox.Show(dr[1].ToString());
                 //cmbChecker.SelectedValue = dr[1].ToString();
                 //cmbChecker.SelectedIndex = cmbChecker.Items.IndexOf(dr[1].ToString());
-                break;
+                break; // gets first result, gets highest essentially xd
             }
             string check = "INSERT INTO tblCheck (UserID, InspectionID, HeadingComponent, Rating) " +
                                     $" VALUES ({cmbChecker.SelectedValue}, {InspectionID}, {HeadingComponentID}, {Value})";
