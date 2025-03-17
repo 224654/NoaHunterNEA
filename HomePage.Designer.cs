@@ -36,9 +36,10 @@
             this.txtActive = new System.Windows.Forms.TextBox();
             this.lblActive = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picLogo = new System.Windows.Forms.PictureBox();
             this.lblName = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.btnLogOut = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // btnStart
@@ -123,25 +124,36 @@
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // pictureBox1
+            // picLogo
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(508, 49);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(319, 232);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
+            this.picLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picLogo.BackgroundImage")));
+            this.picLogo.Location = new System.Drawing.Point(311, 22);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(288, 247);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLogo.TabIndex = 7;
+            this.picLogo.TabStop = false;
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.lblName.Location = new System.Drawing.Point(395, 49);
+            this.lblName.Location = new System.Drawing.Point(503, 49);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(157, 26);
             this.lblName.TabIndex = 8;
             this.lblName.Text = "Inspection ID:\\t";
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.btnLogOut.Location = new System.Drawing.Point(594, 275);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(152, 54);
+            this.btnLogOut.TabIndex = 9;
+            this.btnLogOut.Text = "Log Out";
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // HomePage
             // 
@@ -149,8 +161,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.lblName);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.picLogo);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.lblActive);
             this.Controls.Add(this.txtActive);
@@ -161,7 +174,7 @@
             this.Name = "HomePage";
             this.Text = "HomePage";
             this.Load += new System.EventHandler(this.HomePage_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,7 +189,8 @@
         private System.Windows.Forms.TextBox txtActive;
         private System.Windows.Forms.Label lblActive;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Button btnLogOut;
     }
 }

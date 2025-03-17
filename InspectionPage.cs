@@ -80,7 +80,7 @@ namespace NoaHunterNEA
 
         private void NewInspection()
         {
-            string Location = "", Duty = "", Lead = "";
+            //string Location = "", Duty = "", Lead = "";
             //Read most recent record in tblInspection
             clsDBConnector dbConnector = new clsDBConnector();
             OleDbDataReader dr;
@@ -91,24 +91,42 @@ namespace NoaHunterNEA
                 $"WHERE InspectionID = {FindLargestID("InspectionID", "tblInspection")}";
             dr = dbConnector.DoSQL(sqlStr);
             while (dr.Read())
-            {
+            {   /*
                 Location = dr[0].ToString();
                 Duty = dr[1].ToString();
                 Lead = dr[2].ToString();
-
+                */
+                cmbLocation.SelectedValue = dr[0].ToString();
+                cmbDuty.Text = GetName(Convert.ToInt32(dr[1].ToString()));
+                cmbLead.Text = GetName(Convert.ToInt32(dr[2].ToString()));
             }
             string cmdStr = "INSERT INTO tblInspection  (Location, DutyManager, LeadInstructor, InspectionDate) " +
-                $"VALUES ({Location},{Duty},{Lead},'{DateTime.Now.ToString()}')";
+                $"VALUES ({cmbLocation.SelectedValue},{cmbDuty.SelectedValue},{cmbLead.SelectedValue},'{DateTime.Now.ToString()}')";
             dtpStart.Value = DateTime.Now;
-            cmbLocation.SelectedValue = Location;
             dbConnector.DoDML(cmdStr);
             dbConnector.Close();
         }
 
+        private string GetName(int UserID)
+        {
+            clsDBConnector dbConnector = new clsDBConnector();
+            dbConnector.Connect();
+            OleDbDataReader dr;
+            string nameSQL = "SELECT (Sname & " + "', '" + $" & Fname) as Name FROM tblUsers tblUsers WHERE (UserID = {UserID})";
+            dr = dbConnector.DoSQL(nameSQL);
+            string name = "";
+            while (dr.Read())
+            {
+                name = dr[0].ToString();
+            }
+            dbConnector.Close();
+            return name;
+        }
+
         private void ExistingInspection(int ID)
         {
-            string Location = "", Duty = "", Lead = "";
-            DateTime InspectionDate = DateTime.Now;
+            //string Location = "", Duty = "", Lead = "";
+            //DateTime InspectionDate = DateTime.Now;
             //Read most recent record in tblInspection
             clsDBConnector dbConnector = new clsDBConnector();
             OleDbDataReader dr;
@@ -120,18 +138,20 @@ namespace NoaHunterNEA
             dr = dbConnector.DoSQL(sqlStr);
             while (dr.Read())
             {
+                dtpStart.Value = Convert.ToDateTime(dr[3].ToString());
+                cmbLocation.SelectedValue = dr[0].ToString();
+                cmbDuty.SelectedValue = dr[1].ToString();
+                cmbLead.SelectedValue = dr[2].ToString();
+                /*
                 Location = dr[0].ToString();
                 Duty = dr[1].ToString();
                 Lead = dr[2].ToString();
                 InspectionDate = Convert.ToDateTime(dr[3].ToString());
+                */
             }
             dbConnector.Close();
             //string cmdStr = "INSERT INTO tblInspection  (Location, DutyManager, LeadInstructor, InspectionDate) " +
             //   $"VALUES ({Location},{Duty},{Lead},'{DateTime.Now.ToString()}')";
-            dtpStart.Value = InspectionDate;
-            cmbLocation.SelectedValue = Location;
-            cmbDuty.SelectedValue = Duty;
-            cmbLead.SelectedValue = Lead;
             //dbConnector.DoDML(cmdStr);
         }
 
@@ -236,7 +256,7 @@ namespace NoaHunterNEA
 
                         while (drPanel.Read()) // for each heading
                         {
-                            CtrlThreeState ctrlThreeState = new CtrlThreeState(drPanel[0].ToString(),inspectionID);
+                            CtrlThreeState ctrlThreeState = new CtrlThreeState(drPanel[0].ToString(), inspectionID);
                             flowLayoutPanel.Controls.Add(ctrlThreeState);
                         }
                     }
@@ -252,7 +272,7 @@ namespace NoaHunterNEA
         }
         private void SQLUpdate()
         {
-            if (started==true)
+            if (started == true)
             {
                 clsDBConnector dbConnector = new clsDBConnector();
                 dbConnector.Connect();

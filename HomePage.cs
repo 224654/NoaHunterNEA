@@ -65,5 +65,13 @@ namespace NoaHunterNEA
 
 
         }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            OpenPage openingPage = new OpenPage();
+            openingPage.ShowDialog();
+            this.Close();
+        }
     }
 }
