@@ -15,9 +15,12 @@ namespace NoaHunterNEA
     {
         public int inspectionID { get; set; }
         public bool started { get; set; }
-        public InspectionPage(int inspID)
+        public int userID { get; set; }
+        public InspectionPage(int inspID, int UserID)
         {
             inspectionID = inspID;
+            userID = UserID;
+
             InitializeComponent();
         }
         private void InspectionPage_Load_1(object sender, EventArgs e)
@@ -256,7 +259,7 @@ namespace NoaHunterNEA
 
                         while (drPanel.Read()) // for each heading
                         {
-                            CtrlThreeState ctrlThreeState = new CtrlThreeState(drPanel[0].ToString(), inspectionID);
+                            CtrlThreeState ctrlThreeState = new CtrlThreeState(drPanel[0].ToString(), inspectionID,userID);
                             flowLayoutPanel.Controls.Add(ctrlThreeState);
                         }
                     }

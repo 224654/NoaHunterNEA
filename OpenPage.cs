@@ -34,5 +34,13 @@ namespace NoaHunterNEA
             signIn.ShowDialog();
             this.Close();
         }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            SignUp signUp = new SignUp();
+            signUp.ShowDialog();
+            this.Close();
+        }
     }
 }

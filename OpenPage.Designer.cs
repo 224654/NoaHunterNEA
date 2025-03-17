@@ -51,6 +51,7 @@
             this.btnUp.TabIndex = 1;
             this.btnUp.Text = "Sign up";
             this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnGuest
             // 

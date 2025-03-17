@@ -83,7 +83,7 @@
             // btnSettings
             // 
             this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.btnSettings.Location = new System.Drawing.Point(508, 351);
+            this.btnSettings.Location = new System.Drawing.Point(508, 275);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(238, 54);
             this.btnSettings.TabIndex = 3;
@@ -147,7 +147,7 @@
             // btnLogOut
             // 
             this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.btnLogOut.Location = new System.Drawing.Point(594, 275);
+            this.btnLogOut.Location = new System.Drawing.Point(594, 351);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(152, 54);
             this.btnLogOut.TabIndex = 9;

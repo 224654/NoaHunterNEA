@@ -17,6 +17,7 @@ namespace NoaHunterNEA
         private int InspectionID { get; set; }
         private int CheckID { get; set; }
         private int Value { get; set; }
+        public int UserID { get; set; }
 
 
         public int FindLargestID(string PrimaryKey, string Table)
@@ -36,11 +37,12 @@ namespace NoaHunterNEA
             return i;
         }
 
-        public CtrlThreeState(string headingComponentID, int inspectionID)
+        public CtrlThreeState(string headingComponentID, int inspectionID, int userID)
         {
             InitializeComponent();
             HeadingComponentID = headingComponentID;
-            InspectionID = inspectionID; ;
+            InspectionID = inspectionID;
+            UserID = userID;
         }
 
         private void CtrlThreeState_Load(object sender, EventArgs e)
@@ -86,10 +88,24 @@ namespace NoaHunterNEA
             {
                 LastRating();
             }
-
             this.Cursor = Cursors.Default;
-        }
 
+        }
+        private string GetName(int UserID)
+        {
+            clsDBConnector dbConnector = new clsDBConnector();
+            dbConnector.Connect();
+            OleDbDataReader dr;
+            string nameSQL = "SELECT (Sname & " + "', '" + $" & Fname) as Name FROM tblUsers tblUsers WHERE (UserID = {UserID})";
+            dr = dbConnector.DoSQL(nameSQL);
+            string name = "";
+            while (dr.Read())
+            {
+                name = dr[0].ToString();
+            }
+            dbConnector.Close();
+            return name;
+        }
 
         public void LastRating()
         {
@@ -112,6 +128,10 @@ namespace NoaHunterNEA
                 //cmbChecker.SelectedValue = dr[1].ToString();
                 //cmbChecker.SelectedIndex = cmbChecker.Items.IndexOf(dr[1].ToString());
                 break; // gets first result, gets highest essentially xd
+            }
+            if (UserID != 0)
+            {
+                cmbChecker.Text = GetName(UserID);
             }
             string check = "INSERT INTO tblCheck (UserID, InspectionID, HeadingComponent, Rating) " +
                                     $" VALUES ({cmbChecker.SelectedValue}, {InspectionID}, {HeadingComponentID}, {Value})";

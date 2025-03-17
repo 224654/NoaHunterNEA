@@ -23,7 +23,7 @@ namespace NoaHunterNEA
         {
             this.Cursor = Cursors.WaitCursor;
             int inspectionID = 0;
-            InspectionPage inspectionPage = new InspectionPage(inspectionID);
+            InspectionPage inspectionPage = new InspectionPage(inspectionID,userID);
             inspectionPage.ShowDialog(); //dialog stops user being able to use form below 
             this.Cursor = Cursors.Default;
         }
@@ -33,7 +33,7 @@ namespace NoaHunterNEA
             try
             {
                 int inspectionID = Convert.ToInt32(txtActive.Text);
-                InspectionPage inspectionPage = new InspectionPage(inspectionID);
+                InspectionPage inspectionPage = new InspectionPage(inspectionID,userID);
                 inspectionPage.ShowDialog(); //dialog stops user being able to use form below 
             }
             catch (Exception)
@@ -63,7 +63,11 @@ namespace NoaHunterNEA
             
             lblName.Text = $"Hello {name}";
 
-
+            if(userID == 0)
+            {
+                btnSettings.Visible = false;
+                btnTraining.Visible = false;
+            }
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
