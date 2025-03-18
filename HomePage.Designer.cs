@@ -89,6 +89,7 @@
             this.btnSettings.TabIndex = 3;
             this.btnSettings.Text = "Account Settings";
             this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // txtActive
             // 

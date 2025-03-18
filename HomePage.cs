@@ -32,13 +32,37 @@ namespace NoaHunterNEA
         {
             try
             {
-                int inspectionID = Convert.ToInt32(txtActive.Text);
+
+            bool existance = false;
+            int inspectionID = Convert.ToInt32(txtActive.Text);
+            
+            clsDBConnector dbConnector = new clsDBConnector();
+            OleDbDataReader dr;
+            string sqlStr;
+            dbConnector.Connect();
+            sqlStr = $" SELECT Location " +
+                $"FROM tblInspection " +
+                $"WHERE InspectionID = {inspectionID}";
+            dr = dbConnector.DoSQL(sqlStr);
+            while (dr.Read())
+            {
+                existance = true;                
+            }
+            dbConnector.Close();
+            
+            if (existance)
+            {
                 InspectionPage inspectionPage = new InspectionPage(inspectionID,userID);
                 inspectionPage.ShowDialog(); //dialog stops user being able to use form below 
             }
+            else
+            {
+                MessageBox.Show("Sorry, this inspection does not exist.");
+            }            
+            }
             catch (Exception)
             {
-                MessageBox.Show("You did not enter an integar \nPlease try again");
+                MessageBox.Show("Sorry, please enter ID carefully.");
             }
         }
 
@@ -76,6 +100,12 @@ namespace NoaHunterNEA
             OpenPage openingPage = new OpenPage();
             openingPage.ShowDialog();
             this.Close();
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            Account account = new Account();
+            account.ShowDialog();
         }
     }
 }
