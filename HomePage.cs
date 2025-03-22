@@ -23,7 +23,7 @@ namespace NoaHunterNEA
         {
             this.Cursor = Cursors.WaitCursor;
             int inspectionID = 0;
-            InspectionPage inspectionPage = new InspectionPage(inspectionID,userID);
+            InspectionPage inspectionPage = new InspectionPage(inspectionID, userID);
             inspectionPage.ShowDialog(); //dialog stops user being able to use form below 
             this.Cursor = Cursors.Default;
         }
@@ -33,32 +33,32 @@ namespace NoaHunterNEA
             try
             {
 
-            bool existance = false;
-            int inspectionID = Convert.ToInt32(txtActive.Text);
-            
-            clsDBConnector dbConnector = new clsDBConnector();
-            OleDbDataReader dr;
-            string sqlStr;
-            dbConnector.Connect();
-            sqlStr = $" SELECT Location " +
-                $"FROM tblInspection " +
-                $"WHERE InspectionID = {inspectionID}";
-            dr = dbConnector.DoSQL(sqlStr);
-            while (dr.Read())
-            {
-                existance = true;                
-            }
-            dbConnector.Close();
-            
-            if (existance)
-            {
-                InspectionPage inspectionPage = new InspectionPage(inspectionID,userID);
-                inspectionPage.ShowDialog(); //dialog stops user being able to use form below 
-            }
-            else
-            {
-                MessageBox.Show("Sorry, this inspection does not exist.");
-            }            
+                bool existance = false;
+                int inspectionID = Convert.ToInt32(txtActive.Text);
+
+                clsDBConnector dbConnector = new clsDBConnector();
+                OleDbDataReader dr;
+                string sqlStr;
+                dbConnector.Connect();
+                sqlStr = $" SELECT Location " +
+                    $"FROM tblInspection " +
+                    $"WHERE InspectionID = {inspectionID}";
+                dr = dbConnector.DoSQL(sqlStr);
+                while (dr.Read())
+                {
+                    existance = true;
+                }
+                dbConnector.Close();
+
+                if (existance)
+                {
+                    InspectionPage inspectionPage = new InspectionPage(inspectionID, userID);
+                    inspectionPage.ShowDialog(); //dialog stops user being able to use form below 
+                }
+                else
+                {
+                    MessageBox.Show("Sorry, this inspection does not exist.");
+                }
             }
             catch (Exception)
             {
@@ -68,7 +68,10 @@ namespace NoaHunterNEA
 
         private void btnArchive_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Archive archive = new Archive(userID);
+            archive.ShowDialog();
+            this.Close();
         }
 
         private void HomePage_Load(object sender, EventArgs e)
@@ -84,10 +87,10 @@ namespace NoaHunterNEA
                 name = dr[0].ToString();
             }
             dbConnector.Close();
-            
+
             lblName.Text = $"Hello {name}";
 
-            if(userID == 0)
+            if (userID == 0)
             {
                 btnSettings.Visible = false;
                 btnTraining.Visible = false;

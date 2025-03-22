@@ -52,6 +52,12 @@
     <Compile Include="Account.Designer.cs">
       <DependentUpon>Account.cs</DependentUpon>
     </Compile>
+    <Compile Include="Archive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Archive.Designer.cs">
+      <DependentUpon>Archive.cs</DependentUpon>
+    </Compile>
     <Compile Include="clsDBConnector.cs" />
     <Compile Include="clsHeading.cs" />
     <Compile Include="CLsUsers.cs">
@@ -101,6 +107,9 @@
     <Compile Include="SignUp.Designer.cs">
       <DependentUpon>SignUp.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Archive.resx">
+      <DependentUpon>Archive.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CtrlThreeState.resx">
       <DependentUpon>CtrlThreeState.cs</DependentUpon>
     </EmbeddedResource>
