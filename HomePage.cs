@@ -81,14 +81,15 @@ namespace NoaHunterNEA
             OleDbDataReader dr;
             string nameSQL = "SELECT (Fname & " + "' '" + $" & Sname) as Name FROM tblUsers tblUsers WHERE (UserID = {userID})";
             dr = dbConnector.DoSQL(nameSQL);
-            string name = "";
+            string name = "", shownID = "";
             while (dr.Read())
             {
                 name = dr[0].ToString();
+                shownID = userID.ToString();
             }
             dbConnector.Close();
 
-            lblName.Text = $"Hello {name}";
+            lblName.Text = $"Hello user {shownID}\n{name}";
 
             if (userID == 0)
             {
@@ -107,8 +108,10 @@ namespace NoaHunterNEA
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            Account account = new Account();
-            account.ShowDialog();
+            this.Hide();
+            SignUp signUp = new SignUp(userID);
+            signUp.ShowDialog();
+            this.Close();
         }
     }
 }

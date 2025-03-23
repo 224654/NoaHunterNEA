@@ -38,7 +38,7 @@
             this.lblEmail = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.dtpDOB = new System.Windows.Forms.DateTimePicker();
-            this.lblIn = new System.Windows.Forms.Label();
+            this.lblHead = new System.Windows.Forms.Label();
             this.btnIn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -123,16 +123,16 @@
             this.dtpDOB.TabIndex = 16;
             this.dtpDOB.Value = new System.DateTime(2001, 9, 11, 0, 0, 0, 0);
             // 
-            // lblIn
+            // lblHead
             // 
-            this.lblIn.BackColor = System.Drawing.Color.White;
-            this.lblIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.lblIn.Location = new System.Drawing.Point(12, 19);
-            this.lblIn.Name = "lblIn";
-            this.lblIn.Size = new System.Drawing.Size(260, 42);
-            this.lblIn.TabIndex = 18;
-            this.lblIn.Text = "Welcome";
-            this.lblIn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblHead.BackColor = System.Drawing.Color.White;
+            this.lblHead.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.lblHead.Location = new System.Drawing.Point(12, 19);
+            this.lblHead.Name = "lblHead";
+            this.lblHead.Size = new System.Drawing.Size(260, 42);
+            this.lblHead.TabIndex = 18;
+            this.lblHead.Text = "Welcome";
+            this.lblHead.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnIn
             // 
@@ -149,7 +149,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 381);
-            this.Controls.Add(this.lblIn);
+            this.Controls.Add(this.lblHead);
             this.Controls.Add(this.btnIn);
             this.Controls.Add(this.dtpDOB);
             this.Controls.Add(this.lblEmail);
@@ -180,7 +180,7 @@
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.DateTimePicker dtpDOB;
-        private System.Windows.Forms.Label lblIn;
+        private System.Windows.Forms.Label lblHead;
         private System.Windows.Forms.Button btnIn;
     }
 }
