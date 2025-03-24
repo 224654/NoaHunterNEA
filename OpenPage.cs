@@ -20,10 +20,12 @@ namespace NoaHunterNEA
 
         private void btnGuest_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             this.Hide();
             HomePage homePage = new HomePage(0);
             homePage.ShowDialog(); //dialog stops user being able to use form below // thxx ben
             this.Close();
+            this.Cursor = Cursors.Default;
             
         }
 
@@ -37,10 +39,12 @@ namespace NoaHunterNEA
 
         private void btnUp_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             this.Hide();
             SignUp signUp = new SignUp(0);
             signUp.ShowDialog();
             this.Close();
+            this.Cursor = Cursors.Default;
         }
     }
 }

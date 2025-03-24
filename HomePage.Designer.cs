@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePage));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnTraining = new System.Windows.Forms.Button();
             this.btnArchive = new System.Windows.Forms.Button();
@@ -36,10 +38,10 @@
             this.txtActive = new System.Windows.Forms.TextBox();
             this.lblActive = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.picLogo = new System.Windows.Forms.PictureBox();
             this.lblName = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnStart
@@ -83,7 +85,7 @@
             // btnSettings
             // 
             this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.btnSettings.Location = new System.Drawing.Point(508, 275);
+            this.btnSettings.Location = new System.Drawing.Point(508, 351);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(238, 54);
             this.btnSettings.TabIndex = 3;
@@ -125,21 +127,11 @@
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // picLogo
-            // 
-            this.picLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picLogo.BackgroundImage")));
-            this.picLogo.Location = new System.Drawing.Point(311, 22);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(288, 247);
-            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picLogo.TabIndex = 7;
-            this.picLogo.TabStop = false;
-            // 
             // lblName
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.lblName.Location = new System.Drawing.Point(503, 49);
+            this.lblName.Location = new System.Drawing.Point(314, 49);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(116, 26);
             this.lblName.TabIndex = 8;
@@ -148,7 +140,7 @@
             // btnLogOut
             // 
             this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.btnLogOut.Location = new System.Drawing.Point(594, 351);
+            this.btnLogOut.Location = new System.Drawing.Point(594, 49);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(152, 54);
             this.btnLogOut.TabIndex = 9;
@@ -156,15 +148,31 @@
             this.btnLogOut.UseVisualStyleBackColor = true;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(319, 122);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(427, 207);
+            this.chart1.TabIndex = 10;
+            this.chart1.Text = "chart1";
+            // 
             // HomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chart1);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.lblName);
-            this.Controls.Add(this.picLogo);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.lblActive);
             this.Controls.Add(this.txtActive);
@@ -175,7 +183,7 @@
             this.Name = "HomePage";
             this.Text = "HomePage";
             this.Load += new System.EventHandler(this.HomePage_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,8 +198,8 @@
         private System.Windows.Forms.TextBox txtActive;
         private System.Windows.Forms.Label lblActive;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Button btnLogOut;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
