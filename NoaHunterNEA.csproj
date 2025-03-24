@@ -63,11 +63,6 @@
     <Compile Include="CtrlThreeState.Designer.cs">
       <DependentUpon>CtrlThreeState.cs</DependentUpon>
     </Compile>
-    <Compile Include="NEADataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NEADataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="OpenPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,17 +126,6 @@
     <EmbeddedResource Include="SignUp.resx">
       <DependentUpon>SignUp.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="NEADataSet.xsc">
-      <DependentUpon>NEADataSet.xsd</DependentUpon>
-    </None>
-    <None Include="NEADataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>NEADataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="NEADataSet.xss">
-      <DependentUpon>NEADataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -154,11 +138,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="NEA.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
