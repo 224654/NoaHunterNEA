@@ -35,7 +35,7 @@ namespace NoaHunterNEA
                 {
                     this.Hide();
                     HomePage homePage = new HomePage(UserID);
-                    homePage.ShowDialog(); //dialog stops user being able to use form below // thxx ben
+                    homePage.ShowDialog(); //dialog stops user being able to use form below
                     this.Close();
                 }
                 else

@@ -44,6 +44,7 @@
             this.lblDuty = new System.Windows.Forms.Label();
             this.lblLocation = new System.Windows.Forms.Label();
             this.Pages = new System.Windows.Forms.TabControl();
+            this.btnHome = new System.Windows.Forms.Button();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.Pages.SuspendLayout();
@@ -62,6 +63,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnHome);
             this.panel1.Controls.Add(this.btnPages);
             this.panel1.Controls.Add(this.lblID);
             this.panel1.Controls.Add(this.lstPage);
@@ -80,7 +82,7 @@
             // 
             // btnPages
             // 
-            this.btnPages.Location = new System.Drawing.Point(437, 310);
+            this.btnPages.Location = new System.Drawing.Point(437, 32);
             this.btnPages.Name = "btnPages";
             this.btnPages.Size = new System.Drawing.Size(152, 42);
             this.btnPages.TabIndex = 11;
@@ -203,6 +205,16 @@
             this.Pages.Size = new System.Drawing.Size(797, 448);
             this.Pages.TabIndex = 12;
             // 
+            // btnHome
+            // 
+            this.btnHome.Location = new System.Drawing.Point(437, 313);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(152, 42);
+            this.btnHome.TabIndex = 12;
+            this.btnHome.Text = "Return Home";
+            this.btnHome.UseVisualStyleBackColor = true;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
             // InspectionPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,5 +250,6 @@
         private System.Windows.Forms.Label lblLocation;
         private System.Windows.Forms.TabControl Pages;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Button btnHome;
     }
 }

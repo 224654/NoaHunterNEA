@@ -310,5 +310,13 @@ namespace NoaHunterNEA
         {
             SQLUpdate();
         }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            HomePage homePage = new HomePage(userID);
+            homePage.ShowDialog(); //dialog stops user being able to use form below
+            this.Close();
+        }
     }
 }

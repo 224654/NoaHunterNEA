@@ -43,7 +43,7 @@ namespace NoaHunterNEA
                 //MessageBox.Show(lstInspections.Items.Count.ToString());
             }
             dbConnector.Close();
-
+            /*
             dbConnector.Connect();
             sqlStr =    "SELECT tblUsers.Sname " +
                         "FROM(tblUsers INNER JOIN " +
@@ -55,13 +55,15 @@ namespace NoaHunterNEA
             {
                 //lstInspections.Items[lstInspections.Items.Count - 1].SubItems[4].Text = (dr[0].ToString());
             }
-            dbConnector.Close();
+            dbConnector.Close();*/
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
+            this.Hide();
             InspectionPage inspectionPage = new InspectionPage(Convert.ToInt32(lstInspections.SelectedItems[0].SubItems[0].Text), userID);
             inspectionPage.ShowDialog();
+            this.Close();
         }
 
         private void btnHome_Click(object sender, EventArgs e)

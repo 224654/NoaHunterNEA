@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnTraining = new System.Windows.Forms.Button();
             this.btnArchive = new System.Windows.Forms.Button();
@@ -40,8 +40,9 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.lblName = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.chartUser = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnAdd = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.chartUser)).BeginInit();
             this.SuspendLayout();
             // 
             // btnStart
@@ -68,13 +69,14 @@
             this.btnTraining.TabIndex = 1;
             this.btnTraining.Text = "Update Training";
             this.btnTraining.UseVisualStyleBackColor = false;
+            this.btnTraining.Click += new System.EventHandler(this.btnTraining_Click);
             // 
             // btnArchive
             // 
             this.btnArchive.BackColor = System.Drawing.Color.Black;
             this.btnArchive.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.btnArchive.ForeColor = System.Drawing.Color.White;
-            this.btnArchive.Location = new System.Drawing.Point(38, 351);
+            this.btnArchive.Location = new System.Drawing.Point(38, 431);
             this.btnArchive.Name = "btnArchive";
             this.btnArchive.Size = new System.Drawing.Size(238, 54);
             this.btnArchive.TabIndex = 2;
@@ -85,7 +87,7 @@
             // btnSettings
             // 
             this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.btnSettings.Location = new System.Drawing.Point(508, 351);
+            this.btnSettings.Location = new System.Drawing.Point(508, 122);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(238, 54);
             this.btnSettings.TabIndex = 3;
@@ -148,29 +150,43 @@
             this.btnLogOut.UseVisualStyleBackColor = true;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
-            // chart1
+            // chartUser
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(319, 122);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(427, 207);
-            this.chart1.TabIndex = 10;
-            this.chart1.Text = "chart1";
+            chartArea2.Name = "ChartArea1";
+            this.chartUser.ChartAreas.Add(chartArea2);
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            this.chartUser.Legends.Add(legend2);
+            this.chartUser.Location = new System.Drawing.Point(319, 198);
+            this.chartUser.Name = "chartUser";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartUser.Series.Add(series2);
+            this.chartUser.Size = new System.Drawing.Size(427, 287);
+            this.chartUser.TabIndex = 10;
+            this.chartUser.Text = "chartUser";
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.Black;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Location = new System.Drawing.Point(38, 356);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(238, 54);
+            this.btnAdd.TabIndex = 11;
+            this.btnAdd.Text = "Add New";
+            this.btnAdd.UseVisualStyleBackColor = false;
             // 
             // HomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.chart1);
+            this.ClientSize = new System.Drawing.Size(800, 535);
+            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.chartUser);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.btnSearch);
@@ -183,7 +199,7 @@
             this.Name = "HomePage";
             this.Text = "HomePage";
             this.Load += new System.EventHandler(this.HomePage_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartUser)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,6 +216,7 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Button btnLogOut;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartUser;
+        private System.Windows.Forms.Button btnAdd;
     }
 }

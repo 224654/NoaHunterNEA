@@ -22,9 +22,11 @@ namespace NoaHunterNEA
         private void btnStart_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
-            int inspectionID = 0;
+            int inspectionID = 0; 
+            this.Hide();
             InspectionPage inspectionPage = new InspectionPage(inspectionID, userID);
             inspectionPage.ShowDialog(); //dialog stops user being able to use form below 
+            this.Close();
             this.Cursor = Cursors.Default;
         }
 
@@ -32,7 +34,6 @@ namespace NoaHunterNEA
         {
             try
             {
-
                 bool existance = false;
                 int inspectionID = Convert.ToInt32(txtActive.Text);
 
@@ -52,8 +53,10 @@ namespace NoaHunterNEA
 
                 if (existance)
                 {
+                    this.Hide();
                     InspectionPage inspectionPage = new InspectionPage(inspectionID, userID);
                     inspectionPage.ShowDialog(); //dialog stops user being able to use form below 
+                    this.Close();
                 }
                 else
                 {
@@ -95,6 +98,48 @@ namespace NoaHunterNEA
             {
                 btnSettings.Visible = false;
                 btnTraining.Visible = false;
+                chartUser.Visible = false;
+            }
+
+
+            ///
+
+            doChart();
+
+        }
+
+        private void doChart()
+        {
+            clsDBConnector dbConnector = new clsDBConnector();
+            dbConnector.Connect();
+            OleDbDataReader dr;
+            chartUser.Series.Clear();
+            chartUser.Series.Add("Checks");
+            chartUser.Series["Checks"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+            string sqlStr;
+            sqlStr = " SELECT        tblCheck.ChecksID, tblInspection.InspectionDate " +
+                "FROM(tblCheck INNER JOIN " +
+                "tblInspection ON tblCheck.InspectionID = tblInspection.InspectionID) " +
+                $"WHERE(tblCheck.UserID = {userID}) " +
+                "ORDER BY tblInspection.InspectionDate";
+            dr = dbConnector.DoSQL(sqlStr);
+
+            DateTime prevTime = new DateTime(1900, 1, 1);
+            int counter = 0;
+            while (dr.Read())
+            {
+                DateTime currentTime = Convert.ToDateTime(dr[1]);
+                if (currentTime == prevTime || prevTime == new DateTime(1900, 1, 1))
+                {
+                    counter++;
+                }
+                else
+                {
+                    chartUser.Series["Checks"].Points.AddXY(dr[1], counter);
+                    counter = 1;
+                }
+                prevTime = currentTime;
             }
         }
 
@@ -112,6 +157,11 @@ namespace NoaHunterNEA
             SignUp signUp = new SignUp(userID);
             signUp.ShowDialog();
             this.Close();
+        }
+
+        private void btnTraining_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
