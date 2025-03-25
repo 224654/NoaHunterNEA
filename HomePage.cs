@@ -69,13 +69,6 @@ namespace NoaHunterNEA
             }
         }
 
-        private void btnArchive_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Archive archive = new Archive(userID);
-            archive.ShowDialog();
-            this.Close();
-        }
 
         private void HomePage_Load(object sender, EventArgs e)
         {
@@ -161,7 +154,17 @@ namespace NoaHunterNEA
 
         private void btnTraining_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Training training = new Training(userID);
+            training.ShowDialog();
+            this.Close();
+        }
+        private void btnArchive_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Archive archive = new Archive(userID);
+            archive.ShowDialog();
+            this.Close();
         }
     }
 }

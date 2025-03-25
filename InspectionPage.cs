@@ -26,8 +26,8 @@ namespace NoaHunterNEA
         private void InspectionPage_Load_1(object sender, EventArgs e)
         {
             started = false;
-            FillPplCmb(cmbDuty, 6);
-            FillPplCmb(cmbLead, 7);
+            FillPplCmb(cmbDuty, 6, 6);
+            FillPplCmb(cmbLead, 6, 7);
             FillLocCmb();
             if (inspectionID == 0)
             {
@@ -43,16 +43,15 @@ namespace NoaHunterNEA
             started = true;
         }
 
-        private void FillPplCmb(ComboBox comboName, int skill)
+        private void FillPplCmb(ComboBox comboName, int skillA, int skillB)
         {
             comboName.Items.Clear();
             clsDBConnector dBConnector = new clsDBConnector();
             dBConnector.Connect();
-            //string sqlString = "SELECT UserID, Sname FROM tblUsers ";
             string sqlString = "SELECT        tblUsers.UserID, (tblUsers.Sname & " + "', '" + " & tblUsers.Fname) as Name" +
                                " FROM(tblTraining INNER JOIN" +
                                " tblUsers ON tblTraining.UserID = tblUsers.UserID)" +
-                               $" WHERE(tblTraining.SkillID = {skill})" +
+                               $" WHERE(tblTraining.SkillID = {skillA} or tblTraining.SkillID = {skillB})" +
                                " ORDER BY Sname, Fname";
             OleDbDataAdapter da = new OleDbDataAdapter(sqlString, dBConnector.GetConnectionString());
             DataSet ds = new DataSet();
@@ -83,7 +82,6 @@ namespace NoaHunterNEA
 
         private void NewInspection()
         {
-            //string Location = "", Duty = "", Lead = "";
             //Read most recent record in tblInspection
             clsDBConnector dbConnector = new clsDBConnector();
             OleDbDataReader dr;
@@ -94,11 +92,7 @@ namespace NoaHunterNEA
                 $"WHERE InspectionID = {FindLargestID("InspectionID", "tblInspection")}";
             dr = dbConnector.DoSQL(sqlStr);
             while (dr.Read())
-            {   /*
-                Location = dr[0].ToString();
-                Duty = dr[1].ToString();
-                Lead = dr[2].ToString();
-                */
+            {   
                 cmbLocation.SelectedValue = dr[0].ToString();
                 cmbDuty.Text = GetName(Convert.ToInt32(dr[1].ToString()));
                 cmbLead.Text = GetName(Convert.ToInt32(dr[2].ToString()));
@@ -145,17 +139,8 @@ namespace NoaHunterNEA
                 cmbLocation.SelectedValue = dr[0].ToString();
                 cmbDuty.SelectedValue = dr[1].ToString();
                 cmbLead.SelectedValue = dr[2].ToString();
-                /*
-                Location = dr[0].ToString();
-                Duty = dr[1].ToString();
-                Lead = dr[2].ToString();
-                InspectionDate = Convert.ToDateTime(dr[3].ToString());
-                */
             }
             dbConnector.Close();
-            //string cmdStr = "INSERT INTO tblInspection  (Location, DutyManager, LeadInstructor, InspectionDate) " +
-            //   $"VALUES ({Location},{Duty},{Lead},'{DateTime.Now.ToString()}')";
-            //dbConnector.DoDML(cmdStr);
         }
 
         public int FindLargestID(string PrimaryKey, string Table)
