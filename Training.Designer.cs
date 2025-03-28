@@ -39,6 +39,9 @@
             this.lblSkill = new System.Windows.Forms.Label();
             this.cmbTrainer = new System.Windows.Forms.ComboBox();
             this.lblTrainer = new System.Windows.Forms.Label();
+            this.btnUser = new System.Windows.Forms.Button();
+            this.lblUser = new System.Windows.Forms.Label();
+            this.txtUser = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lstTraining
@@ -48,7 +51,7 @@
             this.columnHeader2,
             this.columnHeader3});
             this.lstTraining.HideSelection = false;
-            this.lstTraining.Location = new System.Drawing.Point(12, 12);
+            this.lstTraining.Location = new System.Drawing.Point(12, 58);
             this.lstTraining.Name = "lstTraining";
             this.lstTraining.Size = new System.Drawing.Size(322, 257);
             this.lstTraining.TabIndex = 0;
@@ -63,7 +66,7 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "Date Completed";
-            this.columnHeader2.Width = 120;
+            this.columnHeader2.Width = 88;
             // 
             // columnHeader3
             // 
@@ -72,7 +75,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(259, 390);
+            this.btnAdd.Location = new System.Drawing.Point(259, 436);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 1;
@@ -83,7 +86,7 @@
             // cmbSkill
             // 
             this.cmbSkill.FormattingEnabled = true;
-            this.cmbSkill.Location = new System.Drawing.Point(134, 319);
+            this.cmbSkill.Location = new System.Drawing.Point(134, 365);
             this.cmbSkill.Name = "cmbSkill";
             this.cmbSkill.Size = new System.Drawing.Size(200, 21);
             this.cmbSkill.TabIndex = 9;
@@ -91,7 +94,7 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(12, 291);
+            this.lblDate.Location = new System.Drawing.Point(12, 337);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(69, 13);
             this.lblDate.TabIndex = 12;
@@ -99,7 +102,7 @@
             // 
             // dtpDate
             // 
-            this.dtpDate.Location = new System.Drawing.Point(134, 285);
+            this.dtpDate.Location = new System.Drawing.Point(134, 331);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(200, 20);
             this.dtpDate.TabIndex = 10;
@@ -108,7 +111,7 @@
             // lblSkill
             // 
             this.lblSkill.AutoSize = true;
-            this.lblSkill.Location = new System.Drawing.Point(12, 322);
+            this.lblSkill.Location = new System.Drawing.Point(12, 368);
             this.lblSkill.Name = "lblSkill";
             this.lblSkill.Size = new System.Drawing.Size(26, 13);
             this.lblSkill.TabIndex = 11;
@@ -117,7 +120,7 @@
             // cmbTrainer
             // 
             this.cmbTrainer.FormattingEnabled = true;
-            this.cmbTrainer.Location = new System.Drawing.Point(134, 346);
+            this.cmbTrainer.Location = new System.Drawing.Point(134, 392);
             this.cmbTrainer.Name = "cmbTrainer";
             this.cmbTrainer.Size = new System.Drawing.Size(200, 21);
             this.cmbTrainer.TabIndex = 13;
@@ -125,17 +128,46 @@
             // lblTrainer
             // 
             this.lblTrainer.AutoSize = true;
-            this.lblTrainer.Location = new System.Drawing.Point(12, 349);
+            this.lblTrainer.Location = new System.Drawing.Point(12, 395);
             this.lblTrainer.Name = "lblTrainer";
             this.lblTrainer.Size = new System.Drawing.Size(40, 13);
             this.lblTrainer.TabIndex = 14;
             this.lblTrainer.Text = "Trainer";
             // 
+            // btnUser
+            // 
+            this.btnUser.Location = new System.Drawing.Point(229, 29);
+            this.btnUser.Name = "btnUser";
+            this.btnUser.Size = new System.Drawing.Size(105, 20);
+            this.btnUser.TabIndex = 15;
+            this.btnUser.Text = "Search UserID";
+            this.btnUser.UseVisualStyleBackColor = true;
+            this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
+            // 
+            // lblUser
+            // 
+            this.lblUser.AutoSize = true;
+            this.lblUser.Location = new System.Drawing.Point(9, 9);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(55, 13);
+            this.lblUser.TabIndex = 16;
+            this.lblUser.Text = "{name xd}";
+            // 
+            // txtUser
+            // 
+            this.txtUser.Location = new System.Drawing.Point(134, 29);
+            this.txtUser.Name = "txtUser";
+            this.txtUser.Size = new System.Drawing.Size(74, 20);
+            this.txtUser.TabIndex = 17;
+            // 
             // Training
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(353, 428);
+            this.ClientSize = new System.Drawing.Size(346, 474);
+            this.Controls.Add(this.txtUser);
+            this.Controls.Add(this.lblUser);
+            this.Controls.Add(this.btnUser);
             this.Controls.Add(this.cmbTrainer);
             this.Controls.Add(this.lblTrainer);
             this.Controls.Add(this.cmbSkill);
@@ -165,5 +197,8 @@
         private System.Windows.Forms.Label lblSkill;
         private System.Windows.Forms.ComboBox cmbTrainer;
         private System.Windows.Forms.Label lblTrainer;
+        private System.Windows.Forms.Button btnUser;
+        private System.Windows.Forms.Label lblUser;
+        private System.Windows.Forms.TextBox txtUser;
     }
 }

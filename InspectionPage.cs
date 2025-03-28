@@ -51,7 +51,8 @@ namespace NoaHunterNEA
             string sqlString = "SELECT        tblUsers.UserID, (tblUsers.Sname & " + "', '" + " & tblUsers.Fname) as Name" +
                                " FROM(tblTraining INNER JOIN" +
                                " tblUsers ON tblTraining.UserID = tblUsers.UserID)" +
-                               $" WHERE(tblTraining.SkillID = {skillA} or tblTraining.SkillID = {skillB})" +
+                               $" WHERE(tblTraining.SkillID = {skillA}) AND(tblTraining.Valid = True) OR" +
+                               $" (tblTraining.SkillID = {skillB}) AND(tblTraining.Valid = True)" +
                                " ORDER BY Sname, Fname";
             OleDbDataAdapter da = new OleDbDataAdapter(sqlString, dBConnector.GetConnectionString());
             DataSet ds = new DataSet();
