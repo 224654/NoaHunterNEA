@@ -32,11 +32,11 @@ namespace NoaHunterNEA
             cmbSkill.Items.Clear();
             clsDBConnector dBConnector = new clsDBConnector();
             dBConnector.Connect();
-            string sqlString = "SELECT SkillID, Skill FROM tblSkills";
+            string sqlString = "SELECT SkillID, SkillName FROM tblSkills";
             OleDbDataAdapter da = new OleDbDataAdapter(sqlString, dBConnector.GetConnectionString());
             DataSet ds = new DataSet();
             da.Fill(ds, "tblSkills");
-            cmbSkill.DisplayMember = "Skill";
+            cmbSkill.DisplayMember = "SkillName";
             cmbSkill.ValueMember = "SkillID";
             cmbSkill.DataSource = ds.Tables["tblSkills"];
             dBConnector.Close();
@@ -73,7 +73,7 @@ namespace NoaHunterNEA
             OleDbDataReader dr;
             string sqlStr;
             dbConnector.Connect();
-            sqlStr = "SELECT        tblSkills.Skill, tblTraining.TrainingDate, (tblUsers.Sname & " + "', '" + " & tblUsers.Fname) as Name, tblTraining.Valid, tblTraining.TrainingID " +
+            sqlStr = "SELECT        tblSkills.SkillName, tblTraining.TrainingDate, (tblUsers.Sname & " + "', '" + " & tblUsers.Fname) as Name, tblTraining.Valid, tblTraining.TrainingID " +
                 "FROM((tblSkills INNER JOIN " +
                 "tblTraining ON tblSkills.SkillID = tblTraining.SkillID) INNER JOIN " +
                 $"tblUsers ON tblTraining.TrainerID = tblUsers.UserID) {where}" +

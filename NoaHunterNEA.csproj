@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Adding.Designer.cs">
+      <DependentUpon>Adding.cs</DependentUpon>
+    </Compile>
     <Compile Include="Archive.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +109,9 @@
     <Compile Include="Training.Designer.cs">
       <DependentUpon>Training.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Adding.resx">
+      <DependentUpon>Adding.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Archive.resx">
       <DependentUpon>Archive.cs</DependentUpon>
     </EmbeddedResource>

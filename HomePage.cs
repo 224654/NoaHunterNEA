@@ -90,7 +90,7 @@ namespace NoaHunterNEA
             if (userID == 0)
             {
                 btnSettings.Visible = false;
-                btnTraining.Visible = false;
+                btnAdd.Visible = false;
                 chartUser.Visible = false;
             }
 
@@ -164,6 +164,14 @@ namespace NoaHunterNEA
             this.Hide();
             Archive archive = new Archive(userID);
             archive.ShowDialog();
+            this.Close();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Adding adding = new Adding(userID);
+            adding.ShowDialog();
             this.Close();
         }
     }
