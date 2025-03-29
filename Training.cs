@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Runtime.CompilerServices;
 
 namespace NoaHunterNEA
 {
@@ -17,7 +18,7 @@ namespace NoaHunterNEA
     {
         public int userID { get; set; }
         public int SearchID { get; set; }
-        //public bool exists { get; set; }
+        public bool ReassessMode { get; set; }
         public Training(int UserID)
         {
             userID = UserID;
@@ -40,9 +41,10 @@ namespace NoaHunterNEA
             cmbSkill.DataSource = ds.Tables["tblSkills"];
             dBConnector.Close();
 
+            ReassessMode = false;
             FillPplCmb();
-            FillName();
-            FillLst();
+            //FillName();
+            FillLst($"WHERE(tblTraining.UserID = {SearchID}) ");
         }
 
         private void FillName()
@@ -60,11 +62,11 @@ namespace NoaHunterNEA
             }
             dbConnector.Close();
 
-            lblUser.Text = $"Showing {name}'s training";
         }
 
-        private void FillLst()
+        private void FillLst(string where)
         {
+            btnAdd.Enabled = true;
             lstTraining.Items.Clear();
 
             clsDBConnector dbConnector = new clsDBConnector();
@@ -74,34 +76,79 @@ namespace NoaHunterNEA
             sqlStr = "SELECT        tblSkills.Skill, tblTraining.TrainingDate, (tblUsers.Sname & " + "', '" + " & tblUsers.Fname) as Name, tblTraining.Valid, tblTraining.TrainingID " +
                 "FROM((tblSkills INNER JOIN " +
                 "tblTraining ON tblSkills.SkillID = tblTraining.SkillID) INNER JOIN " +
-                "tblUsers ON tblTraining.TrainerID = tblUsers.UserID) " +
-                $"WHERE(tblTraining.UserID = {SearchID}) " +
+                $"tblUsers ON tblTraining.TrainerID = tblUsers.UserID) {where}" +
+                // $"WHERE(tblTraining.UserID = {SearchID}) " +
                 "ORDER BY tblTraining.TrainingDate DESC";
 
             dr = dbConnector.DoSQL(sqlStr);
             List<clsHeading> lstInvalidate = new List<clsHeading>();
             while (dr.Read())
             {
-                lstTraining.Items.Add(dr[0].ToString());
-                lstTraining.Items[lstTraining.Items.Count - 1].SubItems.Add(dr[1].ToString().Remove(10));
-                lstTraining.Items[lstTraining.Items.Count - 1].SubItems.Add(dr[2].ToString());
-                if (dr[3].ToString() != "True")
+                if (ReassessMode == false)
                 {
-                    lstTraining.Items[lstTraining.Items.Count - 1].BackColor = Color.Gray;
+                    lstTraining.Items.Add(dr[0].ToString());
+                    lstTraining.Items[lstTraining.Items.Count - 1].SubItems.Add(dr[1].ToString().Remove(10));
+                    lstTraining.Items[lstTraining.Items.Count - 1].SubItems.Add(dr[2].ToString());
+                    if (dr[3].ToString() != "True")
+                    {
+                        lstTraining.Items[lstTraining.Items.Count - 1].BackColor = Color.Gray;
+                    }
                 }
-                else if (Convert.ToDateTime(dr[1].ToString()).AddMonths(3) < DateTime.Now)
-                {
-                    lstTraining.Items[lstTraining.Items.Count - 1].BackColor = Color.Gray;
 
-                    // put in an array to go through after with training ID
-                    clsHeading Invalidate = new clsHeading();
-                    Invalidate.ID = Convert.ToInt32(dr[4].ToString());
-                    lstInvalidate.Add(Invalidate);
+                if (dr[3].ToString() == "True")
+                {
+                    /*if (Convert.ToDateTime(dr[1].ToString()).AddMonths(3) < DateTime.Now)
+                    {
+                        if (ReassessMode == true)
+                        {
+                            lstTraining.Items.Add(dr[0].ToString());
+                            lstTraining.Items[lstTraining.Items.Count - 1].SubItems.Add(dr[1].ToString().Remove(10));
+                            lstTraining.Items[lstTraining.Items.Count - 1].SubItems.Add(dr[2].ToString());
+                        }
+
+                        lstTraining.Items[lstTraining.Items.Count - 1].BackColor = Color.Gray;
+
+                        // put in an array to go through after with training ID
+                        clsHeading Invalidate = new clsHeading();
+                        Invalidate.ID = Convert.ToInt32(dr[4].ToString());
+                        lstInvalidate.Add(Invalidate);
+
+                    }*/
+                    if (Convert.ToDateTime(dr[1].ToString()).AddMonths(2) < DateTime.Now)
+                    {
+                        if (ReassessMode == true)
+                        {
+                            lstTraining.Items.Add(dr[0].ToString());
+                            lstTraining.Items[lstTraining.Items.Count - 1].SubItems.Add(dr[1].ToString().Remove(10));
+                            lstTraining.Items[lstTraining.Items.Count - 1].SubItems.Add(dr[2].ToString());
+                        }
+                        lstTraining.Items[lstTraining.Items.Count - 1].BackColor = Color.Orange;
+                    }
 
                 }
-                else if (Convert.ToDateTime(dr[1].ToString()).AddMonths(2) < DateTime.Now)
+            }
+            dbConnector.Close();
+            /////
+            dbConnector.Connect();
+            sqlStr = "SELECT tblUsers.Sname & ', ' & tblUsers.Fname AS Name, tblTraining.Valid, tblTraining.TrainingDate " +
+                "FROM(tblTraining INNER JOIN " +
+                $"tblUsers ON tblTraining.UserID = tblUsers.UserID) {where}" +
+                // $"WHERE(tblTraining.UserID = {SearchID}) " +
+                "ORDER BY tblTraining.TrainingDate DESC";
+
+            dr = dbConnector.DoSQL(sqlStr);
+            int i = 0;
+            while (dr.Read())
+            {
+                if (ReassessMode == false)
                 {
-                    lstTraining.Items[lstTraining.Items.Count - 1].BackColor = Color.Orange;
+                    lstTraining.Items[i].SubItems.Add(dr[0].ToString());
+                    i++;
+                }
+                else if (dr[1].ToString() == "True" && Convert.ToDateTime(dr[2].ToString()).AddMonths(2) < DateTime.Now)
+                {
+                    lstTraining.Items[i].SubItems.Add(dr[0].ToString());
+                    i++;
                 }
             }
             dbConnector.Close();
@@ -162,7 +209,7 @@ namespace NoaHunterNEA
 
 
 
-            FillLst();
+            FillLst($"WHERE(tblTraining.UserID = {SearchID}) ");
             FillPplCmb();
         }
 
@@ -205,8 +252,9 @@ namespace NoaHunterNEA
 
                 if (exists)
                 {
-                    FillName();
-                    FillLst();
+                    ReassessMode = false;
+                    //FillName();
+                    FillLst($"WHERE(tblTraining.UserID = {SearchID}) ");
                     FillPplCmb();
                 }
                 else
@@ -219,6 +267,21 @@ namespace NoaHunterNEA
             {
                 MessageBox.Show("What you entered was not an integar. \nPlease try again.");
             }
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            HomePage homePage = new HomePage(userID);
+            homePage.ShowDialog(); //dialog stops user being able to use form below
+            this.Close();
+        }
+
+        private void btnRe_Click(object sender, EventArgs e)
+        {
+            ReassessMode = true;
+            FillLst("");
+            btnAdd.Enabled = false;
         }
     }
 }
