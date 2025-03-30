@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
@@ -52,7 +53,42 @@ namespace NoaHunterNEA
 
                 lblB.Visible = false;
                 cmbB.Visible = false;
+
+                lblA.Text = "Which page:";
+                FillCmb(cmbA,"PageID","tblPage","PageName");
             }
+            else
+            {
+                mode = 3;
+                btnSubmit.Visible = true;
+                lblA.Visible = true;
+                cmbA.Visible = true;
+                lblB.Visible = true;
+                cmbB.Visible = true;
+
+                lblName.Visible = false;
+                txtName.Visible = false;
+
+                lblB.Text = "Which Heading:";
+                lblA.Text = "Which Component:";
+                FillCmb(cmbB, "HeadingID", "tblHeading", "HeadingName");
+                FillCmb(cmbA, "ComponentID", "tblComponents", "ComponentName");
+            }
+        }
+
+        private void FillCmb(ComboBox comboName, string primary, string tbl, string name)
+        {
+            comboName.Items.Clear();
+            clsDBConnector dBConnector = new clsDBConnector();
+            dBConnector.Connect();
+            string sqlString = $"SELECT {primary}, {name} FROM {tbl} ORDER BY {name}";
+            OleDbDataAdapter da = new OleDbDataAdapter(sqlString, dBConnector.GetConnectionString());
+            DataSet ds = new DataSet();
+            da.Fill(ds, tbl);
+            comboName.DisplayMember = name;
+            comboName.ValueMember = primary;
+            comboName.DataSource = ds.Tables[tbl];
+            dBConnector.Close();
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -65,22 +101,26 @@ namespace NoaHunterNEA
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-//            string name;
+            //            string name;
             string tbl;
-            if (mode == 1)
+            clsDBConnector dbConnector = new clsDBConnector();
+            dbConnector.Connect();
+            string cmdStr="";
+            switch (mode)
             {
-                tbl = cmbSelect.Text;
-                clsDBConnector dbConnector = new clsDBConnector();
-                string cmdStr = $"INSERT INTO tbl{tbl} ({tbl.Remove(tbl.Length-1)}Name) " +
-                    $"VALUES ('{txtName.Text}')";
-                dbConnector.Connect();
-                dbConnector.DoDML(cmdStr);
-                dbConnector.Close();
-            }
-            if (mode == 2) 
-            { 
+                case 1:
+                    tbl = cmbSelect.Text;
+                    cmdStr = $"INSERT INTO tbl{tbl} ({tbl.Remove(tbl.Length - 1)}Name) " +
+                        $"VALUES ('{txtName.Text}')";
+                    break;
 
+                case 2:
+                    cmdStr = $"INSERT INTO tblHeading (HeadingName,Page) " +
+                        $"VALUES ('{txtName.Text}',{cmbA.SelectedValue})";
+                    break;
             }
+            dbConnector.DoDML(cmdStr);
+            dbConnector.Close();
         }
     }
 }

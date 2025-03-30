@@ -30,6 +30,7 @@
         {
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnHome = new System.Windows.Forms.Button();
             this.btnPages = new System.Windows.Forms.Button();
             this.lblID = new System.Windows.Forms.Label();
             this.lstPage = new System.Windows.Forms.ListView();
@@ -44,7 +45,6 @@
             this.lblDuty = new System.Windows.Forms.Label();
             this.lblLocation = new System.Windows.Forms.Label();
             this.Pages = new System.Windows.Forms.TabControl();
-            this.btnHome = new System.Windows.Forms.Button();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.Pages.SuspendLayout();
@@ -80,11 +80,21 @@
             this.panel1.Size = new System.Drawing.Size(777, 410);
             this.panel1.TabIndex = 13;
             // 
+            // btnHome
+            // 
+            this.btnHome.Location = new System.Drawing.Point(437, 342);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(152, 30);
+            this.btnHome.TabIndex = 12;
+            this.btnHome.Text = "Return Home";
+            this.btnHome.UseVisualStyleBackColor = true;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
             // btnPages
             // 
-            this.btnPages.Location = new System.Drawing.Point(437, 32);
+            this.btnPages.Location = new System.Drawing.Point(437, 297);
             this.btnPages.Name = "btnPages";
-            this.btnPages.Size = new System.Drawing.Size(152, 42);
+            this.btnPages.Size = new System.Drawing.Size(152, 41);
             this.btnPages.TabIndex = 11;
             this.btnPages.Text = "Open Pages";
             this.btnPages.UseVisualStyleBackColor = true;
@@ -204,16 +214,6 @@
             this.Pages.SelectedIndex = 0;
             this.Pages.Size = new System.Drawing.Size(797, 448);
             this.Pages.TabIndex = 12;
-            // 
-            // btnHome
-            // 
-            this.btnHome.Location = new System.Drawing.Point(437, 313);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(152, 42);
-            this.btnHome.TabIndex = 12;
-            this.btnHome.Text = "Return Home";
-            this.btnHome.UseVisualStyleBackColor = true;
-            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // InspectionPage
             // 

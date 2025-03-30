@@ -75,7 +75,7 @@
             this.cmbA.FormattingEnabled = true;
             this.cmbA.Location = new System.Drawing.Point(121, 132);
             this.cmbA.Name = "cmbA";
-            this.cmbA.Size = new System.Drawing.Size(121, 21);
+            this.cmbA.Size = new System.Drawing.Size(159, 21);
             this.cmbA.TabIndex = 4;
             this.cmbA.Visible = false;
             // 
@@ -91,7 +91,7 @@
             "Skills"});
             this.cmbSelect.Location = new System.Drawing.Point(121, 71);
             this.cmbSelect.Name = "cmbSelect";
-            this.cmbSelect.Size = new System.Drawing.Size(121, 21);
+            this.cmbSelect.Size = new System.Drawing.Size(159, 21);
             this.cmbSelect.TabIndex = 5;
             this.cmbSelect.SelectedIndexChanged += new System.EventHandler(this.cmbSelect_SelectedIndexChanged);
             // 
@@ -99,7 +99,7 @@
             // 
             this.txtName.Location = new System.Drawing.Point(121, 104);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(121, 20);
+            this.txtName.Size = new System.Drawing.Size(159, 20);
             this.txtName.TabIndex = 8;
             this.txtName.Visible = false;
             // 
@@ -109,14 +109,14 @@
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.lblTitle.Location = new System.Drawing.Point(12, 9);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(230, 42);
+            this.lblTitle.Size = new System.Drawing.Size(268, 42);
             this.lblTitle.TabIndex = 10;
             this.lblTitle.Text = "Add Parts";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnHome
             // 
-            this.btnHome.Location = new System.Drawing.Point(52, 190);
+            this.btnHome.Location = new System.Drawing.Point(72, 190);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(150, 42);
             this.btnHome.TabIndex = 9;
@@ -127,9 +127,9 @@
             // cmbB
             // 
             this.cmbB.FormattingEnabled = true;
-            this.cmbB.Location = new System.Drawing.Point(121, 104);
+            this.cmbB.Location = new System.Drawing.Point(121, 103);
             this.cmbB.Name = "cmbB";
-            this.cmbB.Size = new System.Drawing.Size(121, 21);
+            this.cmbB.Size = new System.Drawing.Size(159, 21);
             this.cmbB.TabIndex = 12;
             this.cmbB.Visible = false;
             // 
@@ -147,7 +147,7 @@
             // 
             this.btnSubmit.Location = new System.Drawing.Point(121, 159);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(121, 25);
+            this.btnSubmit.Size = new System.Drawing.Size(159, 25);
             this.btnSubmit.TabIndex = 13;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
@@ -158,7 +158,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(254, 241);
+            this.ClientSize = new System.Drawing.Size(292, 241);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.cmbB);
             this.Controls.Add(this.lblB);
