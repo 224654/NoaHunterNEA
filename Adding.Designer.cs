@@ -39,6 +39,7 @@
             this.cmbB = new System.Windows.Forms.ComboBox();
             this.lblB = new System.Windows.Forms.Label();
             this.btnSubmit = new System.Windows.Forms.Button();
+            this.cmbC = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblName
@@ -154,11 +155,21 @@
             this.btnSubmit.Visible = false;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
+            // cmbC
+            // 
+            this.cmbC.FormattingEnabled = true;
+            this.cmbC.Location = new System.Drawing.Point(121, 132);
+            this.cmbC.Name = "cmbC";
+            this.cmbC.Size = new System.Drawing.Size(159, 21);
+            this.cmbC.TabIndex = 14;
+            this.cmbC.Visible = false;
+            // 
             // Adding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 241);
+            this.Controls.Add(this.cmbC);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.cmbB);
             this.Controls.Add(this.lblB);
@@ -191,5 +202,6 @@
         private System.Windows.Forms.ComboBox cmbB;
         private System.Windows.Forms.Label lblB;
         private System.Windows.Forms.Button btnSubmit;
+        private System.Windows.Forms.ComboBox cmbC;
     }
 }

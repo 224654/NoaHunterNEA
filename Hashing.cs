@@ -11,10 +11,14 @@ namespace NoaHunterNEA
     {
         public Hashing()
         {
-            byte[] seaSalt;
-            new RNGCryptoServiceProvider().GetBytes(seaSalt = new byte[16]);
+            System.Security.Cryptography.SHA256CryptoServiceProvider SHA256 = new System.Security.Cryptography.SHA256CryptoServiceProvider();
+            byte[] byteArray = SHA256.ComputeHash(Encoding.UTF8.GetBytes("Hello"));
 
-
+            string hexDigest = "";
+            foreach (byte b in byteArray)//using b instead of 'byte' as a variable name as byte is reserved
+            {
+                hexDigest = hexDigest + b.ToString("X");//hex form
+            }
         }
 
 
@@ -29,6 +33,6 @@ namespace NoaHunterNEA
 
     }
 
-    //https://learn.microsoft.com/en-us/troubleshoot/developer/visualstudio/csharp/language-compilers/compute-hash-values#summary
+    //https://learn.microsoft.com/en-us/troubleshoot/developer/visualstudio/csharp/language-compilers/compute-hash-values#summary*/
 }
 */

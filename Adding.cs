@@ -41,6 +41,7 @@ namespace NoaHunterNEA
                 cmbA.Visible = false;
                 lblB.Visible = false;
                 cmbB.Visible = false;
+                cmbC.Visible = false;
             }
             else if (cmbSelect.SelectedIndex == 2)
             {
@@ -53,6 +54,7 @@ namespace NoaHunterNEA
 
                 lblB.Visible = false;
                 cmbB.Visible = false;
+                cmbC.Visible = false;
 
                 lblA.Text = "Which page:";
                 FillCmb(cmbA,"PageID","tblPage","PageName");
@@ -62,23 +64,24 @@ namespace NoaHunterNEA
                 mode = 3;
                 btnSubmit.Visible = true;
                 lblA.Visible = true;
-                cmbA.Visible = true;
+                cmbC.Visible = true;
                 lblB.Visible = true;
                 cmbB.Visible = true;
 
+                cmbA.Visible = false;
                 lblName.Visible = false;
                 txtName.Visible = false;
 
                 lblB.Text = "Which Heading:";
                 lblA.Text = "Which Component:";
                 FillCmb(cmbB, "HeadingID", "tblHeading", "HeadingName");
-                FillCmb(cmbA, "ComponentID", "tblComponents", "ComponentName");
+                FillCmb(cmbC, "ComponentID", "tblComponents", "ComponentName");
             }
         }
 
         private void FillCmb(ComboBox comboName, string primary, string tbl, string name)
         {
-            comboName.Items.Clear();
+            //comboName.Items.Clear();
             clsDBConnector dBConnector = new clsDBConnector();
             dBConnector.Connect();
             string sqlString = $"SELECT {primary}, {name} FROM {tbl} ORDER BY {name}";
