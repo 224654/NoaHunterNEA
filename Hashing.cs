@@ -33,6 +33,6 @@ namespace NoaHunterNEA
 
     }
 
-    //https://learn.microsoft.com/en-us/troubleshoot/developer/visualstudio/csharp/language-compilers/compute-hash-values#summary*/
+    //https://learn.microsoft.com/en-us/troubleshoot/developer/visualstudio/csharp/language-compilers/compute-hash-values#summary
 }
 */

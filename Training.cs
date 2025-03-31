@@ -231,11 +231,12 @@ namespace NoaHunterNEA
         private void btnUser_Click(object sender, EventArgs e)
         {
             bool exists = false;
-            SearchID = Convert.ToInt32(txtUser.Text);
+            string searchID = txtUser.Text;
             string ValidEx = @"[0-9]+$";
-            Match tryToMatch = Regex.Match(SearchID.ToString(), ValidEx);
+            Match tryToMatch = Regex.Match(searchID, ValidEx);
             if (tryToMatch.Success)
             {
+                SearchID = Convert.ToInt32(searchID);
                 clsDBConnector dbConnector = new clsDBConnector();
                 OleDbDataReader dr;
                 string sqlStr;
